@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Pierce Engineering</title>
+		<%= stylesheet_link_tag 'browser-reset', 'scaffold', 'grid', 'admin/style.css' %>
+		<%= javascript_include_tag 'jquery', 'login' %>
+		<%= csrf_meta_tag %>
+	</head>
+	<body>
+		<div class="body grid960">
+			<%= render "admin/partials/branding" %>
+			<div class="login-body">
+				<%= render "admin/sessions/header" %>
+				<div class="login-form">
+					<%= yield %>
+				</div>
+			</div><!-- .login-body -->
+		</div><!-- .grid960 -->
+	</body>
+</html>

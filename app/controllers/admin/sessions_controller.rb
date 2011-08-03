@@ -1,16 +1,23 @@
 class Admin::SessionsController < ApplicationController
+	layout 'session'
+	skip_before_filter :authenticate
 	def create
-		if user = User.authenticate( params[:email], params[:password] )
-			session[:user_id] = user.id
-			redirect_to '/admin/', :notice => "Logged in successfully"
-		else
-			flash.now[:alert] = "Invalid login/password combination"
-			render :action => 'new'
-		end
+			if ! params[:email] 
+				render :action => 'new'
+				return
+			end
+			if user = User.authenticate( params[:email], params[:password] )
+				session[:user_id] = user.id
+				redirect_to '/admin/', :notice => "Logged in successfully"
+			else
+				flash.now[:alert] = "Invalid login/password combination"
+				render :action => 'new'
+			end
 	end
 
 	def destroy
 		reset_session
-		redirect_to root_path, :notice => "You successfully logged out"
+		flash.now[:notice] = "You have logged out."
+		render :action => 'new'
 	end
 end
