@@ -9,6 +9,7 @@ PierceEngineering::Application.routes.draw do
 
 	namespace 'admin' do
 		resources :users
+		resources :dashboard
 		root :to => "dashboard#index"
 	end
 

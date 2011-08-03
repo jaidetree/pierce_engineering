@@ -1,7 +1,4 @@
 class Admin::DashboardController < ApplicationController
-	before_filter :authenticate
-
-	layout 'admin'
 
 	def index
 		respond_to do |format|
