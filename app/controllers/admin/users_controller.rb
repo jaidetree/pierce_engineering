@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
 	before_filter :authenticate
+	layout 'admin'
 
 	# GET /admin/users
 	# GET /admin/users.xml

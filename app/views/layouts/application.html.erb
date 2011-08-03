@@ -9,8 +9,8 @@
 <body>
 	<div id="wrapper">
 		<div class="body grid960">
-	<%= render "layouts/header.erb" %>
-	<%= render "layouts/sidebar.erb" %>
+	<%= render "partials/header.erb" %>
+	<%= render "partials/sidebar.erb" %>
 			<div id="banner"></div><!-- #banner -->
 			<div id="main">
 	<%= content_tag :p, notice, :id => 'notice' if notice.present? %>
@@ -24,7 +24,7 @@
 			<% end %>
 			</div><!-- #main -->
 		</div><!-- .grid960 -->
-	<%= render "layouts/footer.erb" %>
+	<%= render "partials/footer.erb" %>
 	</div><!-- #wrapper -->
 </body>
 </html>

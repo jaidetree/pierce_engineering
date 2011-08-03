@@ -132,6 +132,10 @@ html>body, html>body #wrapper
 
 /* =Navigation
  * -------------------------------------- */
+nav
+{
+	margin-bottom: 20px;
+}
 nav a
 {
 	display: block;

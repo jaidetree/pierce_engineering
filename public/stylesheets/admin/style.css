@@ -1,0 +1,421 @@
+/* =HTML
+ * -------------------------------------- */
+body
+{
+	background: #202020 url('../../images/admin/background.jpg') repeat-x top center;
+	color: #000;
+}
+a
+{
+	color: #1d84cb;
+	text-decoration: none;
+}
+a:hover
+{
+	background: none;
+	color: #1d84cb;
+	text-decoration: underline;
+}
+table
+{
+	margin-top: 20px;
+	width: 100%;
+}
+table td, table th
+{
+	padding: 5px;
+}
+table th
+{
+	text-align: left;
+}
+/* =Typography
+ * -------------------------------------- */
+body, p, ol, ul, td
+{
+	font: 14px/1.4em Arial, Helvetica, sans-serif;
+}
+#branding
+{
+	color: #9993ab;
+	font-weight: bold;
+}
+h1
+{
+	color: #666;
+}
+
+/* =Behavorial Enhancements
+ * -------------------------------------- */
+.body
+{
+	padding-bottom: 180px;
+}
+#wrapper 
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+html, body, #wrapper
+{
+	min-height: 100%;
+	width: 100%;
+	height: 100%;
+}
+html>body, html>body #wrapper 
+{
+	height: auto;
+}
+.clearfix:after, 
+.grid960:after, 
+#branding:after, 
+#header:after,
+#nav:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+	}
+* html .clearfix             { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */
+
+/* =Header
+ * -------------------------------------- */
+#branding .version
+{
+	line-height: 55px;
+}
+#logo
+{
+	width: 100%;
+	height: 55px;
+	background: url(../../images/admin/akz_logo.png) no-repeat center right;
+}
+#logo a
+{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+#logo span
+{
+	display: none;
+}
+#title span
+{
+	display: none;
+}
+#header
+{
+	margin-top: 20px;
+}
+#header .page
+{
+	color: #ccc;
+}
+#title
+{
+	height: 30px;
+	background: url(../../images/admin/title.png) no-repeat;
+}
+#user-info
+{
+	text-align: right;
+}
+#user-info .welcome
+{
+	line-height: 26px;
+	color: #30ccff;
+	text-shadow: 0px 1px 0px #000000;
+	filter: dropshadow(color=#000000, offx=0, offy=1);
+}
+#user-info .welcome a:active,
+#user-info .welcome a:link,
+#user-info .welcome a:visited
+{
+	color: #30ccff;
+}
+#user-info .welcome a:hover
+{
+	color: #fff;
+}
+#user-info .logout
+{
+	margin-left: 20px;
+	display: inline-block;
+	float: right;
+	width: 71px;
+	height: 27px;
+	background: url(../../images/admin/logout.png) no-repeat;
+	color: #fff;
+	font-size: 12px; 
+	line-height: 26px;
+	text-align: left;
+	padding-left: 15px;
+	text-shadow: 0px 1px 0px #000000;
+	filter: dropshadow(color=#000000, offx=0, offy=1);
+}
+
+
+/* =Navigation
+ * -------------------------------------- */
+#nav
+{
+	margin: 20px 0 0 10px;
+	height: 82px;
+	width: 940px;
+	background: url(../../images/admin/nav_header.png) no-repeat;
+}
+#nav ul li
+{
+	float: left;
+	margin: 0 23px;
+}
+#nav a
+{
+	text-indent: -999px;
+	display: block;
+	overflow: hidden;
+	height: 82px;
+	background: url(../../images/admin/admin_icons.png) no-repeat;
+}
+#nav .dashboard
+{
+	width: 74px;
+	background-position: -21px 0;
+}
+
+#nav .dashboard:hover
+{
+	background-position: -21px -88px;
+}
+
+#nav .users
+{
+	width: 42px;
+	background-position: -142px 0;
+}
+
+#nav .users:hover
+{
+	background-position: -142px -88px;
+}
+
+#nav .products
+{
+	width: 60px;
+	background-position: -231px 0;
+}
+
+#nav .products:hover
+{
+	background-position: -231px -88px;
+}
+
+#nav .product-photos
+{
+	width: 104px;
+	background-position: -340px 0;
+}
+
+#nav .product-photos:hover
+{
+	background-position: -340px -88px;
+}
+
+#nav .rifles
+{
+	width: 40px;
+	background-position: -491px 0;
+}
+
+#nav .rifles:hover
+{
+	background-position: -491px -88px;
+}
+
+#nav .settings
+{
+	width: 57px;
+	background-position: -578px 0;
+}
+
+#nav .settings:hover
+{
+	background-position: -578px -88px;
+}
+
+#nav .profile
+{
+	width: 44px;
+	background-position: -683px 0;
+}
+
+#nav .profile:hover
+{
+	background-position: -683px -88px;
+}
+
+#nav .activity
+{
+	width: 50px;
+	background-position: -775px 0;
+}
+
+#nav .activity:hover
+{
+	background-position: -775px -88px;
+}
+
+#nav .support
+{
+	width: 54px;
+	background-position: -871px 0;
+}
+
+#nav .support:hover
+{
+	background-position: -871px -88px;
+}
+
+#nav .selected
+{
+	background-position-y: -88px;
+}
+
+/* =Content
+ * -------------------------------------- */
+#main
+{
+	margin-left: 10px;
+	float: left;
+	background: url(../../images/admin/main_bg.jpg) repeat-y;
+}
+#main h2
+{
+	font-size: 1.4em;
+	color: #777;
+	letter-spacing: 1px;
+}
+#container
+{
+	border-left: 1px solid #fff;
+	border-top: 1px solid #fff;
+	margin: 0;
+	margin-left: 2px;
+	padding-right: 17px;
+	float: right;
+}
+#content
+{
+	padding: 25px;
+	width: 100%;
+}
+/* =Sidebar
+ * -------------------------------------- */
+#sidebar
+{
+	margin: 0;
+}
+#sidebar ul
+{
+	margin: 0;
+	padding-bottom: 20px;
+}
+#sidebar li a
+{
+	color: #999;
+	display: block;
+	border-top: 1px solid #4a556a;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 20px;
+}
+#sidebar li a:hover
+{
+	color: #fff;
+	text-decoration: none;
+}
+#sidebar li
+{
+	border-top: 1px solid #282e39;
+	height: 40px;
+}
+#sidebar li .selected
+{
+	border: none;
+	margin-top: 1px;
+	position: absolute;
+	width: 250px;
+	background: url(../../images/admin/selected_nav_item.jpg) no-repeat;
+	color: #fff;
+}
+/* =Footer
+ * -------------------------------------- */
+#footer
+{
+	position: absolute;
+	bottom: 0;
+	background: #161616;
+	min-height: 170px;
+	width: 100%;
+}
+#footer .title
+{
+	color: #fff;
+	font-size: 2.5em;
+	line-height: 1.8em;
+	font-weight: 200;
+}
+#footer .nav ul
+{
+	float: right;
+}
+#footer .nav li
+{
+	float: left;
+	margin: 0 20px;
+	line-height: 70px;
+}
+#footer .nav li:first-child
+{
+	margin-left: 0;
+}
+#footer .nav li:last-child
+{
+	margin-right: 0;
+}
+#footer .top
+{
+	height: 70px;
+}
+#footer .border
+{
+	border-bottom: 1px solid #9a2828;
+}
+#footer .bottom
+{
+	padding-top: 20px;
+}
+#footer .contact
+{
+	color: #444;
+}
+#footer .contact .left
+{
+	float: left;
+}
+#footer .contact .right
+{
+	float: right;
+}
+#footer .products li
+{
+	float: left;
+	line-height: 1.6em;
+	margin: 0 10px;
+}
+

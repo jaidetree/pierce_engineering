@@ -1,0 +1,31 @@
+<div id="branding">
+	<div class="col-9">
+		<span class="version">Aetkinz Admin Panel 0.1</span>
+	</div><!-- .col-9 -->
+	<div class="col-3">
+		<div id="logo"><a href="http://aetkinzstudios.com" target="_blank"><span>Aetkinz Design, Inc.</span></a></div>
+	</div><!-- .col-3 -->
+</div><!-- #branding -->
+<div id="header">
+	<div class="col-9">
+		<div id="title"><a href="/admin"><span>Pierce Engineering : Administration</span></a></div>
+		<div class="page">Dashboard</div>
+	</div><!-- .col-9 -->
+	<div id="user-info" class="col-3">
+		<span class="welcome">Welcome <a href="#"><%= current_user.first_name %></a></span>
+		<%= h link_to "Logout", login_path, :class => "logout" %>
+	</div><!-- #user-info .col-3 -->
+</div><!-- #header -->
+<div id="nav" class="col-12">
+	<ul>
+		<li><a href="/admin" class="dashboard">Dashboard</a></li>
+		<li><a href="/admin/users" class="users">Users</a></li>
+		<li><a href="/admin/products" class="products selected">Products</a></li>
+		<li><a href="/admin/product-photos" class="product-photos">Dashboard</a></li>
+		<li><a href="/admin/rifles" class="rifles">Rifles</a></li>
+		<li><a href="/admin/settings" class="settings">Settings</a></li>
+		<li><a href="/admin/profile" class="profile">Profile</a></li>
+		<li><a href="/admin/activity" class="activity">Activity</a></li>
+		<li><a href="/admin/support" class="support">Support</a></li>
+	</ul>
+</div><!-- #nav -->

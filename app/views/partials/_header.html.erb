@@ -1,0 +1,16 @@
+<div id="header" class="col-7">
+	<% if current_page?(:action => 'index', :controller => '/pages' ) then tag = 'h1' else tag = 'div' end %>
+	<<%= tag %> id="logo"><a href="/"><span>Pierce Engineering</span></a></<%= tag %>>
+</div><!-- #header -->
+<div id="contact" class="col-5">
+	<div class="phone-number">(517) 321-5051</div>
+	<div class="email">jpierceltd@tds.net</div>
+	<div class="address">
+		PIERCE Engineering<br>
+		5122 North Grand River<br>
+		Lansing, MI 48906
+	</div>
+	<div class="fax">
+		fax: (517) 321-4574
+	</div>
+</div><!-- #contact -->

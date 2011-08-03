@@ -1,6 +1,4 @@
 PierceEngineering::Application.routes.draw do
-  namespace :admin do resources :users end
-
 	resources :news, :products
 	resource :session
 
@@ -11,7 +9,7 @@ PierceEngineering::Application.routes.draw do
 
 	namespace 'admin' do
 		resources :users
-		match '/' => "admin#index"
+		root :to => "dashboard#index"
 	end
 
 	# The priority is based upon order of creation:
