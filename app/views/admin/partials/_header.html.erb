@@ -13,7 +13,7 @@
 	</div><!-- .col-9 -->
 	<div id="user-info" class="col-3">
 		<span class="welcome">Welcome <a href="#"><%= current_user.first_name %></a></span>
-		<%= h link_to "Logout", login_path, :class => "logout" %>
+		<%= h link_to "Logout", admin_logout_path, :class => "logout" %>
 	</div><!-- #user-info .col-3 -->
 </div><!-- #header -->
 <div id="nav" class="col-12">

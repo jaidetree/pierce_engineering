@@ -1,16 +1,15 @@
 PierceEngineering::Application.routes.draw do
 	resources :news, :products
-	resource :session
-
-	match '/login' => "sessions#new", :as => "login"
-	match '/logout' => "sessions#destroy", :as => "logout"
 
 	root :to => 'pages#index'
 
 	namespace 'admin' do
 		resources :users
 		resources :dashboard
+		resource :session
 		root :to => "dashboard#index"
+		match '/login' => "sessions#create", :as => "login"
+		match '/logout' => "sessions#destroy", :as => "logout"
 	end
 
 	# The priority is based upon order of creation:
