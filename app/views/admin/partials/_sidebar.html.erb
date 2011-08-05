@@ -1,8 +1,17 @@
+<% if current_controller? 'admin/products' or current_controller? 'admin/product_categories'
+	content_for :sidebar_links do %>
+		<li><%= link_to 'List Products', admin_products_path %></li>
+		<li><%= link_to 'Add Product', new_admin_product_path %></li>
+		<% if current_controller? 'admin/products', 'edit' %>
+			<li><%= link_to 'View Product', @product %></li>
+		<% end %>
+		<li><%= link_to 'List Product Categories', admin_product_categories_path %></li>
+		<li><%= link_to 'Add Product Category', new_admin_product_category_path %></li>
+	<% end %>
+<% end %>
 <div id="sidebar" class="col-3">
 	<ul>
-		<li><a href="#">Add Product</a></li>
-		<li><a href="#" class="selected">List Products</a></li>
-		<li><a href="#">Add Product</a></li>
-		<li><a href="#">Add Product</a></li>
+		<%= yield :sidebar_links %> 
 	</ul>
+	<%= ActionController::Routing::Routes.recognize_path request.fullpath %>
 </div><!-- #sidebar .col-3 -->

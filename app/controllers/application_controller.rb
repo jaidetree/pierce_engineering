@@ -34,7 +34,18 @@ class ApplicationController < ActionController::Base
 		end
 
 		def is_admin?
-			/^\/admin/.match( request.request_uri ) ? true : false
+			/^\/admin/.match( request.fullpath ) ? true : false
+		end
+
+		# Check to see what page we're in.
+		helper_method :current_controller?
+
+		def current_controller?( controller, action=false )
+			page = ActionController::Routing::Routes.recognize_path request.fullpath
+            
+			controller_found = controller == page[:controller]
+			
+			( action ) ? action == page[:action] && controller_found : controller_found
 		end
 
 	private 

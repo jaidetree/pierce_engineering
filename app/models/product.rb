@@ -3,4 +3,5 @@ class Product < ActiveRecord::Base
 	validates :price, :presence => true
 
 	belongs_to :user
+	belongs_to :product_category
 end

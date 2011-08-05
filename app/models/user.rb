@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
 	validates :last_name, :presence => true
 	validates :password, :presence => true, :confirmation => true, :if => :password_required?
 
-    has_many :products
+    has_many :product_categories
+	has_many :products, :through => :product_categories
 	has_many :news
 
 	before_save :encrypt_new_password
@@ -26,6 +27,14 @@ class User < ActiveRecord::Base
 
 	def authenticated?(password)
 		self.current_password == self.salt + password
+	end
+
+	def full_name
+		self.first_name + " " + self.last_name
+	end
+
+	def identity
+		self.first_name + " ( " + self.email + " )"
 	end
 
 	protected

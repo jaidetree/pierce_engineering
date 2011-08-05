@@ -1,4 +1,4 @@
-class ProductsController < ApplicationController
+class Admin::ProductsController < ApplicationController
 	# GET /products
 	# GET /products.xml
 	def index
@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
 			format.xml  { render :xml => @product }
 		end
 	end
-=begin
+
 	# GET /products/new
 	# GET /products/new.xml
 	def new
@@ -35,12 +35,12 @@ class ProductsController < ApplicationController
 	# GET /products/1/edit
 	def edit
 		@product = Product.find(params[:id])
-	end 
+	end
 
 	# POST /products
 	# POST /products.xml
 	def create
-		@user = User.first()
+		@user = current_user
 		@product = @user.products.new(params[:product])
 
 		respond_to do |format|
@@ -81,5 +81,4 @@ class ProductsController < ApplicationController
 			format.xml  { head :ok }
 		end
 	end
-=end
 end
