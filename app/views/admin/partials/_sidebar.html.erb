@@ -13,5 +13,5 @@
 	<ul>
 		<%= yield :sidebar_links %> 
 	</ul>
-	<%= ActionController::Routing::Routes.recognize_path request.fullpath %>
+	<%= Rails.application.routes.recognize_path request.fullpath %>
 </div><!-- #sidebar .col-3 -->

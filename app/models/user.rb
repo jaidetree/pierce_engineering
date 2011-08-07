@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
 	before_save :encrypt_new_password
 
 	def current_password
-		@current_password || Password.new(hashed_password)
+		@current_password ||= Password.new(hashed_password)
 	end
 
 	def self.authenticate( email, password )
@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
 	protected
 		def encrypt_new_password
 			return if password.blank?
-			self.salt = encrypt( Engine.generate_salt(2) )
+			self.salt = Engine.generate_salt(2)
 			self.hashed_password = encrypt( self.salt + password )
 		end
 

@@ -40,12 +40,13 @@ class Admin::ProductCategoriesController < ApplicationController
   # POST /admin/product_categories
   # POST /admin/product_categories.xml
   def create
-    @admin_product_category = ProductCategory.new(params[:admin_product_category])
+	@user = current_user
+    @admin_product_category = @user.product_categories.new(params[:product_category])
 
     respond_to do |format|
       if @admin_product_category.save
-        format.html { redirect_to(@admin_product_category, :notice => 'Product category was successfully created.') }
-        format.xml  { render :xml => @admin_product_category, :status => :created, :location => @admin_product_category }
+        format.html { redirect_to([:admin, @admin_product_category], :notice => 'Product category was successfully created.') }
+        format.xml  { render :xml => [:admin, @admin_product_category], :status => :created, :location => @admin_product_category }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @admin_product_category.errors, :status => :unprocessable_entity }
@@ -59,8 +60,8 @@ class Admin::ProductCategoriesController < ApplicationController
     @admin_product_category = ProductCategory.find(params[:id])
 
     respond_to do |format|
-      if @admin_product_category.update_attributes(params[:admin_product_category])
-        format.html { redirect_to(@admin_product_category, :notice => 'Product category was successfully updated.') }
+      if @admin_product_category.update_attributes(params[:product_category])
+        format.html { redirect_to([:admin, @admin_product_category], :notice => 'Product category was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -76,7 +77,7 @@ class Admin::ProductCategoriesController < ApplicationController
     @admin_product_category.destroy
 
     respond_to do |format|
-      format.html { redirect_to(admin_product_categories_url) }
+      format.html { redirect_to(admin_product_categories_url, :notice => "Product cateogry was successfully deleted.") }
       format.xml  { head :ok }
     end
   end

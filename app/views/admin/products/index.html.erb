@@ -3,10 +3,8 @@
 <table>
   <tr>
     <th>Name</th>
-    <th>Excerpt</th>
-    <th>Content</th>
     <th>Price</th>
-    <th>Data</th>
+	<th>Category</th>
     <th>User</th>
     <th></th>
     <th></th>
@@ -16,13 +14,11 @@
 <% @products.each do |product| %>
   <tr>
     <td><%= product.name %></td>
-    <td><%= product.excerpt %></td>
-    <td><%= product.content %></td>
     <td><%= product.price %></td>
-    <td><%= product.data %></td>
-    <td><%= product.user %></td>
+    <td><%= product.product_category.name %></td>
+    <td><%= link_user product.user %></td>
     <td><%= link_to 'Show', [:admin, product] %></td>
-    <td><%= link_to 'Edit', admin_edit_product_path(product) %></td>
+    <td><%= link_to 'Edit', edit_admin_product_path(product) %></td>
     <td><%= link_to 'Destroy', [:admin, product], :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>

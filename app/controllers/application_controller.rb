@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
 		helper_method :current_controller?
 
 		def current_controller?( controller, action=false )
-			page = ActionController::Routing::Routes.recognize_path request.fullpath
+			page = Rails.application.routes.recognize_path request.fullpath
             
 			controller_found = controller == page[:controller]
 			

@@ -7,7 +7,7 @@ PierceEngineering::Application.routes.draw do
 
 	namespace 'admin' do
 		root :to => "dashboard#index"
-		resources :users, :dashboard, :products, :product_categories
+		resources :users, :products, :product_categories
 		resource :session
 		match '/login' => "sessions#create", :as => "login"
 		match '/logout' => "sessions#destroy", :as => "logout"

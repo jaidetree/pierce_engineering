@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110805020322) do
+ActiveRecord::Schema.define(:version => 20110805184303) do
 
   create_table "news", :force => true do |t|
     t.string   "title"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20110805020322) do
 
   create_table "product_categories", :force => true do |t|
     t.string   "name"
-    t.string   "slug"
+    t.string   "safe_name"
     t.text     "content"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -34,11 +34,12 @@ ActiveRecord::Schema.define(:version => 20110805020322) do
     t.string   "name"
     t.text     "excerpt"
     t.text     "content"
-    t.decimal  "price",      :precision => 10, :scale => 0
+    t.decimal  "price",               :precision => 10, :scale => 0
     t.text     "data"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "product_category_id"
   end
 
   create_table "sessions", :force => true do |t|
