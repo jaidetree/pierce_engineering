@@ -518,3 +518,33 @@ html>body, html>body #wrapper
 {
 	height: 32px;
 }
+/* =Form Elements
+ * -------------------------------------- */
+.add-row em
+{
+	visibility: hidden;
+	text-decoration: underline;
+	cursor: pointer;
+}
+.add-entry, .remove-entry
+{
+	padding: 1px 4px;
+	border: 1px solid #070;
+	font-weight: bold;
+	width: 15px;
+	cursor: pointer;
+}
+.add-entry
+{
+	color: #070;
+	margin-right: 2px;
+}
+.remove-entry
+{
+	color: #c00;
+	border-color: #c00;
+}
+textarea
+{
+	width: 100%;
+}

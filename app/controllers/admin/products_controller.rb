@@ -61,11 +61,11 @@ class Admin::ProductsController < ApplicationController
 
 		respond_to do |format|
 			if @product.update_attributes(params[:product])
-				format.html { redirect_to(@product, :notice => 'Product was successfully updated.') }
+				format.html { redirect_to( [:admin, @product], :notice => 'Product was successfully updated.') }
 				format.xml  { head :ok }
 			else
 				format.html { render :action => "edit" }
-				format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }
+				format.xml  { render :xml => [:admin, @product.errors], :status => :unprocessable_entity }
 			end
 		end
 	end

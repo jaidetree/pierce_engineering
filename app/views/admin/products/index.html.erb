@@ -14,7 +14,7 @@
 <% @products.each do |product| %>
   <tr>
     <td><%= product.name %></td>
-    <td><%= product.price %></td>
+    <td><%= product.prices %></td>
     <td><%= product.product_category.name %></td>
     <td><%= link_user product.user %></td>
     <td><%= link_to 'Show', [:admin, product] %></td>

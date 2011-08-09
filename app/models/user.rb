@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
 
 	before_save :encrypt_new_password
 
+	def to_s
+		first_name
+	end
+
 	def current_password
 		@current_password ||= Password.new(hashed_password)
 	end

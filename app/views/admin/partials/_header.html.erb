@@ -5,16 +5,16 @@
 		<div class="page">Dashboard</div>
 	</div><!-- .col-9 -->
 	<div id="user-info" class="col-3">
-		<span class="welcome">Welcome <a href="#"><%= current_user.first_name %></a></span>
+		<span class="welcome">Welcome <%= link_user current_user %></span>
 		<%= h link_to "Logout", admin_logout_path, :class => "logout" %>
 	</div><!-- #user-info .col-3 -->
 </div><!-- #header -->
 <div id="nav" class="col-12">
 	<ul>
-		<li><%= link_to 'Dashboard', admin_root_path, :class => 'dashboard' %></li>
-		<li><a href="/admin/users" class="users">Users</a></li>
-		<li><a href="/admin/products" class="products selected">Products</a></li>
-		<li><a href="/admin/product-photos" class="product-photos">Dashboard</a></li>
+		<li><%= nav_link 'Dashboard', admin_root_path %></li>
+		<li><%= nav_link 'Users', admin_users_path %></li>
+		<li><%= nav_link 'Products', admin_products_path %></li>
+		<li><a href="/admin/productphotos" class="product-photos">Product Photos</a></li>
 		<li><a href="/admin/rifles" class="rifles">Rifles</a></li>
 		<li><a href="/admin/settings" class="settings">Settings</a></li>
 		<li><a href="/admin/profile" class="profile">Profile</a></li>

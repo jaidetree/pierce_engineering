@@ -16,16 +16,40 @@
 		<%= f.text_field :name %>
 	</div>
 	<div class="field">
-		<%= f.label :excerpt %><br />
+		<%= f.label 'Short Description' %><br />
 		<%= f.text_area :excerpt %>
 	</div>
 	<div class="field">
 		<%= f.label :content %><br />
-		<%= f.text_area :content %>
+		<%= f.text_area :content, :class => 'mceEditor' %>
 	</div>
 	<div class="field">
-		<%= f.label :price %><br />
-		<%= f.text_field :price %>
+		<%= f.label :prices %><br />
+		<% hash = @product.prices %>
+		<table style="width: auto;">
+			<tbody>
+				<tr>
+					<th>Label</th>
+					<th>Price</th>
+					<th colspan="4">&nbsp;</th>
+				</tr>
+				<% hash.each do |i| %>
+				<tr>
+					<td><%= i[0].to_s %><%= hidden_field_tag 'product[prices][keys][]', i[0].to_s %></td>
+					<td><%= i[1].to_s %><%= hidden_field_tag 'product[prices][values][]', i[1].to_s %></td>
+					<td>[^]</td>
+					<td>[\/]</td>
+					<td>[e]</td>
+					<td>[x]</td>
+				</tr>
+				<% end %>
+				<tr class="add-row">
+					<td colspan="6">
+						<em>Add New Price</em>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 	<div class="field">
 		<%= f.label :data %><br />
