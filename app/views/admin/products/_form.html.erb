@@ -25,26 +25,23 @@
 	</div>
 	<div class="field">
 		<%= f.label :prices %><br />
-		<% hash = @product.prices %>
-		<table style="width: auto;">
+		<% hash = @product.prices ? @product.prices : {} %>
+		<table class="data-table">
 			<tbody>
 				<tr>
 					<th>Label</th>
 					<th>Price</th>
-					<th colspan="4">&nbsp;</th>
+					<th>&nbsp;</th>
 				</tr>
 				<% hash.each do |i| %>
 				<tr>
 					<td><%= i[0].to_s %><%= hidden_field_tag 'product[prices][keys][]', i[0].to_s %></td>
 					<td><%= i[1].to_s %><%= hidden_field_tag 'product[prices][values][]', i[1].to_s %></td>
-					<td>[^]</td>
-					<td>[\/]</td>
-					<td>[e]</td>
-					<td>[x]</td>
+					<td class="actions"></td>
 				</tr>
 				<% end %>
 				<tr class="add-row">
-					<td colspan="6">
+					<td colspan="3">
 						<em>Add New Price</em>
 					</td>
 				</tr>

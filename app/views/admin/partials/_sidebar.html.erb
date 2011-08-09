@@ -3,7 +3,7 @@
 		<li><%= nav_link 'List Products', admin_products_path, 'products', 'index' %></li>
 		<li><%= nav_link 'Add Product', new_admin_product_path, 'products', 'new' %></li>
 		<% if current_controller? 'admin/products', 'edit' %>
-			<li><%= nav_link 'View Product', @product, 'products' %></li>
+			<li><%= link_to 'View Product', @product %></li>
 		<% end %>
 		<li><%= nav_link 'List Product Categories', admin_product_categories_path, 'product_categories', 'index' %></li>
 		<li><%= nav_link 'Add Product Category', new_admin_product_category_path, 'product_categories', 'new' %></li>

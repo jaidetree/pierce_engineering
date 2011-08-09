@@ -520,6 +520,40 @@ html>body, html>body #wrapper
 }
 /* =Form Elements
  * -------------------------------------- */
+.data-table
+{
+	width: 100%;
+}
+.data-table .actions
+{
+	width: 100px;
+	padding-right: 30px;
+	text-align: right;
+}
+.data-table .actions span
+{
+	cursor: pointer;
+}
+.data-table .actions .delete
+{
+	margin-left: 5px;
+}
+.data-table .actions .edit
+{
+	margin-left: 5px;
+}
+.data-table th
+{
+	background: #ccc;
+}
+.data-table .odd td
+{
+	background: #f0f0f0;
+}
+.data-table .add-row td
+{
+	background: none;
+}
 .add-row em
 {
 	visibility: hidden;
@@ -529,20 +563,16 @@ html>body, html>body #wrapper
 .add-entry, .remove-entry
 {
 	padding: 1px 4px;
-	border: 1px solid #070;
 	font-weight: bold;
 	width: 15px;
 	cursor: pointer;
 }
 .add-entry
 {
-	color: #070;
-	margin-right: 2px;
+	margin-right: 6px;
 }
 .remove-entry
 {
-	color: #c00;
-	border-color: #c00;
 }
 textarea
 {
