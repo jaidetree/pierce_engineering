@@ -1,0 +1,8 @@
+<% prefix = (prefix) ? prefix : '' %>
+<ul>
+<% hash.each_pair do | name, value | %>
+	<li><%= name %>: <%= prefix %><%= value %></li>
+<% end %>
+</ul>
+
+

@@ -49,7 +49,7 @@ h1
  * -------------------------------------- */
 .body
 {
-	padding-bottom: 180px;
+	padding-bottom: 20px;
 }
 #wrapper 
 {
@@ -351,71 +351,6 @@ html>body, html>body #wrapper
 	width: 250px;
 	background: url(../../images/admin/selected_nav_item.jpg) no-repeat;
 	color: #fff;
-}
-/* =Footer
- * -------------------------------------- */
-#footer
-{
-	position: absolute;
-	bottom: 0;
-	background: #161616;
-	min-height: 170px;
-	width: 100%;
-}
-#footer .title
-{
-	color: #fff;
-	font-size: 2.5em;
-	line-height: 1.8em;
-	font-weight: 200;
-}
-#footer .nav ul
-{
-	float: right;
-}
-#footer .nav li
-{
-	float: left;
-	margin: 0 20px;
-	line-height: 70px;
-}
-#footer .nav li:first-child
-{
-	margin-left: 0;
-}
-#footer .nav li:last-child
-{
-	margin-right: 0;
-}
-#footer .top
-{
-	height: 70px;
-}
-#footer .border
-{
-	border-bottom: 1px solid #9a2828;
-}
-#footer .bottom
-{
-	padding-top: 20px;
-}
-#footer .contact
-{
-	color: #444;
-}
-#footer .contact .left
-{
-	float: left;
-}
-#footer .contact .right
-{
-	float: right;
-}
-#footer .products li
-{
-	float: left;
-	line-height: 1.6em;
-	margin: 0 10px;
 }
 
 /* =Login

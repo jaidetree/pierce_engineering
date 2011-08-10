@@ -13,6 +13,4 @@
 	<ul>
 		<%= yield :sidebar_links %> 
 	</ul>
-	<%= Rails.application.routes.recognize_path request.fullpath %>
-	<%= current_controller?( 'admin/dashboard' ) %>
 </div><!-- #sidebar .col-3 -->

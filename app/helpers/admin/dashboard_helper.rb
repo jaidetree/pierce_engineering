@@ -18,4 +18,17 @@ module Admin::DashboardHelper
 
 		link_to title, url, options
 	end
+
+	def display_hash( hash )
+        html = ""
+		hash.each_pair do |key, value|
+			html << content_tag( :ul ) do
+				content_tag( :li ) do
+					key + ": $" + value
+				end
+			end
+		end
+
+		html
+	end
 end
