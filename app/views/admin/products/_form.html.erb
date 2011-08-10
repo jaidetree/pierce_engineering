@@ -33,10 +33,6 @@
 		<%= f.label :product_category %>
 		<%= f.select :product_category_id, ProductCategory.all.collect { |p| [ p.name, p.id ] } %>
 	</div>
-	<div class="field">
-		<%= f.label 'File' %>
-		<%= f.file_field 'image' %>
-	</div>
 	<div class="actions">
 		<%= f.submit %>
 	</div>
