@@ -1,0 +1,6 @@
+<h1>Adding Images for Product (&quot;<%= link_to @product.name, edit_admin_product_path( @product ) %>&quot;)</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', [:admin, @product_image] %> |
+<%= link_to 'Back', admin_product_images_path %>

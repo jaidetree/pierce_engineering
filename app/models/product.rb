@@ -6,6 +6,7 @@ class Product < ActiveRecord::Base
 
 	belongs_to :user
 	belongs_to :product_category
+	has_many :product_images
 
 	before_save :process_data
 

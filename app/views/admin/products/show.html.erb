@@ -14,18 +14,18 @@
 </p>
 
 <p>
-  <b>Price:</b>
-  <%= @product.prices %>
+  <b>Price(s):</b>
+  <%= render '/admin/partials/hash_table', :hash => @product.prices, :prefix => '$'  %>
 </p>
 
 <p>
   <b>Data:</b>
-  <%= @product.data %>
+  <%= render '/admin/partials/hash_table', :hash => @product.data, :prefix => '$'  %>
 </p>
 
 <p>
   <b>User:</b>
-  <%= user_link @product.user %>
+  <%= link_user @product.user %>
 </p>
 
 

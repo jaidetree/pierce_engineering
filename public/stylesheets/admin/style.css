@@ -215,13 +215,13 @@ html>body, html>body #wrapper
 	background-position: -231px -88px;
 }
 
-#nav .product-photos
+#nav .product-images
 {
 	width: 104px;
 	background-position: -340px 0;
 }
 
-#nav .product-photos:hover
+#nav .product-images:hover
 {
 	background-position: -340px -88px;
 }

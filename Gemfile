@@ -6,6 +6,9 @@ gem 'rails', '3.0.9'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2', '< 0.3'
+gem "jquery-rails", "~> 1.0.12"
+gem "remotipart", "~> 0.4"
+gem "mini_magick", "~> 3.3"
 
 # Use unicorn as the web server
 # gem 'unicorn'
