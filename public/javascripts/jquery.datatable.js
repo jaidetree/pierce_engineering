@@ -115,12 +115,16 @@
 		},
 
 		set_listeners: function(table) {
-			$('*', table).unbind( '.data-table' );
-			$('.add-row', table).bind( 'mouseenter.data-table',
-				function(){ $(this).children('td').children('em').css( 'visibility', 'visible' ) } ).bind( 'mouseleave.data-table',
+			$('.add-row', table).live( 'mouseenter.data-table',
+				function(){ $(this).children('td').children('em').css( 'visibility', 'visible' ) } ).live( 'mouseleave.data-table',
 				function(){ $(this).children('td').children('em').css( 'visibility', 'hidden' ) } );
-			$('.add-row em', table).bind( 'click.data-table', methods.insert_text_field );
-			$('tr', table).bind( 'mouseenter.data-table', methods.insert_actions ).bind( 'mouseleave.data-table', methods.remove_actions );
+			$('.add-row em', table).live( 'click.data-table', methods.insert_text_field );
+			$('tr', table).live( 'mouseenter.data-table', methods.insert_actions ).live( 'mouseleave.data-table', methods.remove_actions );
+
+			$('.actions .move-up', table).live( 'click.data-table', methods.move_item_up );
+			$('.actions .move-down', table).live( 'click.data-table', methods.move_item_down );
+			$('.actions .edit', table).live( 'click.data-table', methods.edit_item );
+			$('.actions .delete', table).live( 'click.data-table', methods.delete_item );
 
 			methods.color_odd_rows(table);
 		},
@@ -165,11 +169,6 @@
 			remove.setAttribute( 'class', 'delete' );
 			remove.innerHTML = 'x';
 			$(td).append( remove );
-
-			$('.move-up').bind( 'click.data-table', methods.move_item_up );
-			$('.move-down').bind( 'click.data-table', methods.move_item_down );
-			$('.edit').bind( 'click.data-table', methods.edit_item );
-			$('.delete').bind( 'click.data-table', methods.delete_item );
 		},
 
 		edit_item: function() {
@@ -233,7 +232,9 @@
 		delete_item: function() {
 			if( confirm( 'Are you sure you want to delete this item?' ) )
 			{
+				var table = $(this).parents('table');
 				$(this).parents( 'tr' ).remove();
+				methods.color_odd_rows( table );
 			}
 		},
 
@@ -262,7 +263,7 @@
 			var row = $(this).parents('tbody').children('tr:last').before('<tr><td><input type="text" name="data_table_name" /></td><td><input type=text" name="data_table_value" /></td><td><span name="add-entry" class="add-entry" id="add-entry-' + $('.add-entry').length + '">&#10004;</span><span name="remove-entry" class="remove-entry" id="remove-entry-' + $('.add-entry').length + '">&#10008;</span></td></tr>').prev().addClass( 'new-row' );
 
 			$('.add-entry', row).bind( 'click.data-table', methods.add_data_table_row );
-			$('.remove-entry', row).bind( 'click.data-table', function(){ $(row).remove(); } );
+			$('.remove-entry', row).bind( 'click.data-table', function(){ $(this).parents('tr').remove(); } );
 
 		},
 
@@ -277,7 +278,6 @@
 			row.before( tr );
 
 
-			methods.set_listeners( table );
 			methods.color_odd_rows( table );
 		   
 			row.remove();

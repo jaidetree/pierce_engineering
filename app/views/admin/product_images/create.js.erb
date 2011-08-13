@@ -1,0 +1,8 @@
+$('.image-list').prepend("<%= escape_javascript render( :file => '/admin/product_images/_image_li.html.erb', :locals => { :image => @product_image } ) %>");
+$('#new_product_image').get(0).reset();
+$("a[rel=gallery]").fancybox({
+	'titlePosition' 	: 'over',
+	'titleFormat'		: function(title, currentArray, currentIndex, currentOpts) {
+		return '<span id="fancybox-title-over">Image ' + (currentIndex + 1) + ' / ' + currentArray.length + (title.length ? ' &nbsp; ' + title : '') + '</span>';
+	}
+});

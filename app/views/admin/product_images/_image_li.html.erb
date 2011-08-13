@@ -1,0 +1,8 @@
+<li id="image-<%= image.id %>">
+	<%= link_to '&#10065;'.html_safe, image.images[:original], :rel => 'gallery' %>
+	<%= link_to ! image.selected? ? '&#10027;'.html_safe : '&#10029;'.html_safe, select_admin_product_product_image_path( @product, image ), :class =>  'select', :remote => true, :method => :post %>
+	<%= link_to '&#10005;'.html_safe, [:admin, @product, image], :confirm => 'Are you sure?', :method => :delete, :class => 'delete', :remote => true %>
+	<%= link_to '&#9998;'.html_safe, [:admin, @product, image], :class => 'edit' %>
+	<%= image_tag image.images[:thumb] %>
+	<span class="caption"><%= image.caption.blank? ? '<em>no caption</em>'.html_safe : image.caption %></span>
+</li>		

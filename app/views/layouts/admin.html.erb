@@ -4,7 +4,11 @@
 		<title>Pierce Engineering</title>
 		<%= stylesheet_link_tag 'browser-reset', 'scaffold', 'grid', 'admin/style.css' %>
 		<%= javascript_include_tag :defaults %>
-		<%= javascript_include_tag 'jquery.datatable' %>
+		<%= javascript_include_tag 'jquery.datatable', 'fancybox/jquery.fancybox-1.3.4.pack', 'admin/admin' %>
+		<% if File.exists? "#{Rails.root.to_s}/public/javascripts/admin/#{controller.controller_name}.js" %>
+			<%= javascript_include_tag "/javascripts/admin/#{controller.controller_name}"  %>
+		<% end %>
+		<%= stylesheet_link_tag '/javascripts/fancybox/jquery.fancybox-1.3.4.css' %>
 		<%= csrf_meta_tag %>
 	</head>
 	<body>

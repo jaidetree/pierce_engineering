@@ -37,6 +37,10 @@
 		<%= f.submit %>
 	</div>
 <% end %>
+<fieldset>
+	<legend>Product Images</legend>
+	<%= render '/admin/product_images/form' %>
+</fieldset>
 <script type="text/javascript">
 	$(document).ready( function(){ 
 		$('.prices-table').dataTable( { 

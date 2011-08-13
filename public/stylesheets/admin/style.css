@@ -29,6 +29,12 @@ table th
 {
 	text-align: left;
 }
+fieldset
+{
+	border: 1px solid #000;
+	padding: 20px;
+	margin: 25px 0;
+}
 /* =Typography
  * -------------------------------------- */
 body, p, ol, ul, td
@@ -71,7 +77,8 @@ html>body, html>body #wrapper
 .grid960:after, 
 #branding:after, 
 #header:after,
-#nav:after {
+#nav:after,
+.image-list:after {
 	visibility: hidden;
 	display: block;
 	font-size: 0;
@@ -512,4 +519,67 @@ html>body, html>body #wrapper
 textarea
 {
 	width: 100%;
+}
+
+/* =Image List
+ * -------------------------------------- */
+.image-list
+{
+	margin-bottom: 25px;
+}
+.image-list li
+{
+	float: left;
+	padding: 3px;
+	background: #fff;
+	border: 1px solid #CCC;
+	position: relative;
+	margin: 5px;
+}
+.image-list li:hover a
+{
+	display: block;
+}
+.image-list li .caption
+{
+	display: block;
+	text-align: center;
+	font-size: 9px;
+	color: #777;
+}
+.image-list img
+{
+	display: block;
+}
+.image-list a
+{
+	display: block;
+	position: absolute;
+	text-decoration: none;
+	background: #fff;
+	color: #555;
+	width: 20px;
+	line-height: 20px;
+	text-align: center;
+	display: none;
+}
+.image-list .delete
+{
+	right: 0;
+	font-weight: bold;
+}
+.image-list .edit
+{
+	font-weight: bold;
+	right: 0;
+	top: 30px;
+}
+.image-list .select
+{
+	top: 30px;
+	content: '\2729';
+}
+.image-list .selected
+{
+	content: '\272D';
 }

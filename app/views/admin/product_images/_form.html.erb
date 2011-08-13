@@ -1,29 +1,21 @@
-<%= form_for([:admin, @product, @product.product_images.new], :html => { :multipart => true } ) do |f| %>
-  <% if @product_image.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@product_image.errors.count, "error") %> prohibited this product_image from being saved:</h2>
-
-      <ul>
-      <% @product_image.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<ul class="image-list" id="product-images">
+	<% @product.product_images.order('created_at DESC').each do |image| %>
+		<%= render '/admin/product_images/image_li', :image => image %>
+	<% end %>
+</ul>
+<h2>Add Product Image</h2>
+<%= form_for([:admin, @product, @product.product_images.new], :html => { :multipart => true }, :remote => true ) do |f| %>
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.label 'file' %><br />
+    <%= f.file_field 'file' %>
   </div>
   <div class="field">
     <%= f.label :caption %><br />
     <%= f.text_field :caption %>
   </div>
-  <div class="field">
-    <%= f.label 'file' %><br />
-    <%= f.file_field 'file' %>
-  </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Add Product Image' %>
   </div>
 <% end %>
+<script type="text/javascript">
+</script>

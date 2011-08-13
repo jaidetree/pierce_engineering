@@ -11,7 +11,11 @@ PierceEngineering::Application.routes.draw do
 		resources :product_categories 
 
 		resources :products do
-			resources :product_images
+			resources :product_images do
+				member do
+					post 'select'
+				end
+			end
 		end
 
 		resource :session

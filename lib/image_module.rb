@@ -1,18 +1,26 @@
-module Photos
+module PhotoSystem
 	require 'mini_magick'
 
 	def self.upload( image )
 		images = {}
 		filename = Time.now.to_f.to_s.gsub('.','_') + '_' + image.original_filename
-		photo = "#{RAILS_ROOT}/public/photos/#{filename}"
+		photo = "#{Rails.root.to_s}/public/photos/#{filename}"
+		FileUtils.copy(image.tempfile, photo )
+		image = MiniMagick::Image.open( photo )	
+
+		FileUtils.rm( photo )
 		photo = photo.gsub /\..*$/, '' << ".jpg"
-		image = MiniMagick::Image.open( image.tempfile )	
+
 		image.format "jpg"
 		image.write photo
 
+		photo_url = photo.gsub /^.*\/photos/, '/photos' 
+
+		images[:original] = photo_url
+		images[:thumb] = generate_thumbnail photo, 'thumb', 150, true 
 		images[:big] = generate_thumbnail photo, 'big', 600
 		images[:med] = generate_thumbnail photo, 'med', 400
-		images[:small] = generate_thumbnail photo, 'small', 50
+		images[:small] = generate_thumbnail photo, 'small', 50, true
 
 		return images
 	end
@@ -27,10 +35,10 @@ module Photos
 		h = h.to_f
 		if ! crop
 
-			if w > width
-				h = (h*(width/w)).to_i
-				w = width
-			end
+			h = (h*(width/w)).to_i
+			w = width
+
+			image.resize "#{w}x#{h}"
 
 		else
 
@@ -42,14 +50,30 @@ module Photos
 				image.shave("#{remove}x0")
 			end
 
-			image.resize("#{width}x#{height}")
+			image.resize("#{width}x#{width}")
 
 		end
 
-		image.resize "#{w}x#{h}"
 
 		image.write photo_name
+		photo_url = photo_name.gsub /^.*\/photos/, '/photos' 
 
-		return photo_name
+		return photo_url
+	end
+
+	def self.delete_photos( collection )
+		if collection.class.name == "Hash"
+			collection.each_pair do | label, file |
+
+				full_file_path = "#{Rails.root.to_s}/public" << file
+
+				if ! FileTest.exists? full_file_path
+				   next 
+				end
+
+				FileUtils.rm full_file_path  
+
+			end
+		end
 	end
 end

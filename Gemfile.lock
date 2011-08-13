@@ -34,7 +34,7 @@ GEM
     erubis (2.6.6)
       abstract (>= 1.0.0)
     i18n (0.5.0)
-    jquery-rails (1.0.12)
+    jquery-rails (1.0.13)
       railties (~> 3.0)
       thor (~> 0.14)
     mail (2.2.19)
@@ -81,7 +81,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt-ruby
-  jquery-rails (~> 1.0.12)
+  jquery-rails (~> 1.0.13)
   mini_magick (~> 3.3)
   mysql2 (< 0.3)
   rails (= 3.0.9)

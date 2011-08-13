@@ -1,0 +1,4 @@
+$( '.image-list li .select' ).html( '&#10025;' );
+<% if @product_image.selected? %>
+$( '.image-list #image-<%= @product_image.id %> .select' ).html( '&#10029;' );
+<% end %>
