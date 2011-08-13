@@ -9,7 +9,17 @@ PierceEngineering::Application.routes.draw do
 		root :to => "dashboard#index"
 		resources :users, :product_images, :product_categories, :news
 
+		resources :product_categories, :as => 'rifle_categories'
+
 		resources :products do
+			resources :product_images do
+				member do
+					post 'select'
+				end
+			end
+		end
+
+		resources :rifles do
 			resources :product_images do
 				member do
 					post 'select'

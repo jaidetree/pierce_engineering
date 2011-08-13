@@ -14,6 +14,18 @@
 			<li><%= nav_link 'Edit Product Images', new_admin_product_product_image_path( @product ), 'product_images', 'new' %></li>
 		<% end %>
 
+	<% elsif current_controller? 'admin/rifles' or ( ProductCategory.rifles? request.fullpath ) or current_controller? 'admin/product_images' %>
+		<li><%= nav_link 'List Rifles', admin_rifles_path, 'rifles', 'index' %></li>
+		<li><%= nav_link 'Add Rifle', new_admin_rifle_path, 'rifles', 'new' %></li>
+		<% if current_controller? 'admin/rifles', 'edit' %>
+			<li><%= link_to 'View Rifle', @product %></li>
+		<% end %>
+		<li><%= nav_link 'List Rifle Categories', admin_rifle_categories_path, 'rifle_categories', 'index' %></li>
+		<li><%= nav_link 'Add Rifle Category', new_admin_rifle_category_path, 'rifle_categories', 'new' %></li>
+		<% if @product && @product.id %>
+			<li><%= nav_link 'Edit Rifle Images', new_admin_product_product_image_path( @product ), 'product_images', 'new' %></li>
+		<% end %>
+
 	<% elsif current_controller? 'admin/news' %>
 		<li><%= nav_link 'List News', admin_news_index_path, 'news', 'index' %></li>
 		<li><%= nav_link 'Add News', new_admin_news_path, 'news', 'new' %></li>

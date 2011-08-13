@@ -1,8 +1,15 @@
-class Admin::ProductsController < ApplicationController
+class Admin::RiflesController < ApplicationController
 	# GET /products
 	# GET /products.xml
 	def index
-		@products = ProductCategory.find_by_cat_type(0).products.all
+
+		product_category = ProductCategory.find_by_cat_type(1)
+		
+		if( product_category.nil? )
+			@products = []
+		else
+			@products = product_category.products.all
+		end
 
 		respond_to do |format|
 			format.html # index.html.erb
