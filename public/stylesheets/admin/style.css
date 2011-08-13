@@ -50,6 +50,10 @@ h1
 {
 	color: #666;
 }
+#content h2, #content h1
+{
+	margin-bottom: 10px;
+}
 
 /* =Behavorial Enhancements
  * -------------------------------------- */
@@ -88,6 +92,11 @@ html>body, html>body #wrapper
 	}
 * html .clearfix             { zoom: 1; } /* IE6 */
 *:first-child+html .clearfix { zoom: 1; } /* IE7 */
+
+#content form
+{
+	margin-bottom: 20px;
+}
 
 /* =Header
  * -------------------------------------- */
@@ -319,6 +328,7 @@ html>body, html>body #wrapper
 #content
 {
 	padding: 25px;
+	padding-right: 5px;
 }
 /* =Sidebar
  * -------------------------------------- */
@@ -519,6 +529,14 @@ html>body, html>body #wrapper
 textarea
 {
 	width: 100%;
+}
+textarea
+{
+	height: 70px;
+}
+.mceEditor
+{
+	height: 400px;
 }
 
 /* =Image List

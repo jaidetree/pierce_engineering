@@ -13,18 +13,18 @@ class Admin::NewsController < ApplicationController
   # GET /news/1
   # GET /news/1.xml
   def show
-    @news = News.find(params[:id])
+    @story = News.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @news }
+      format.xml  { render :xml => @story }
     end
   end
 
   # GET /news/new
   # GET /news/new.xml
   def new
-    @news = News.new
+    @story = News.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,7 +34,7 @@ class Admin::NewsController < ApplicationController
 
   # GET /news/1/edit
   def edit
-    @news = News.find(params[:id])
+    @story = News.find(params[:id])
   end
 
   # POST /news

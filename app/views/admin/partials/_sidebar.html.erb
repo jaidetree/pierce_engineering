@@ -2,20 +2,23 @@
 	<% if current_controller? 'admin/dashboard' %>
 		<li></li>
 
-	<% elsif current_controller? 'admin/products' or current_controller? 'admin/product_categories' %>
+	<% elsif current_controller? 'admin/products' or current_controller? 'admin/product_categories' or current_controller? 'admin/product_images' %>
 		<li><%= nav_link 'List Products', admin_products_path, 'products', 'index' %></li>
 		<li><%= nav_link 'Add Product', new_admin_product_path, 'products', 'new' %></li>
 		<% if current_controller? 'admin/products', 'edit' %>
 			<li><%= link_to 'View Product', @product %></li>
-			<li><%= link_to 'View Product', new_admin_product_product_image( @product ) %></li>
 		<% end %>
 		<li><%= nav_link 'List Product Categories', admin_product_categories_path, 'product_categories', 'index' %></li>
 		<li><%= nav_link 'Add Product Category', new_admin_product_category_path, 'product_categories', 'new' %></li>
+		<% if @product && @product.id %>
+			<li><%= nav_link 'Edit Product Images', new_admin_product_product_image_path( @product ), 'product_images', 'new' %></li>
+		<% end %>
 
 	<% elsif current_controller? 'admin/news' %>
 		<li><%= nav_link 'List News', admin_news_index_path, 'news', 'index' %></li>
 		<li><%= nav_link 'Add News', new_admin_news_path, 'news', 'new' %></li>
 		<% if current_controller? 'admin/products', 'edit' %>
+			<li><%= link_to 'Show News Story', @story %></li> 
 		<% end %>
 		<li><%= link_to 'View News', news_index_path %></li>
 	<% end %>
