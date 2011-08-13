@@ -7,8 +7,7 @@ PierceEngineering::Application.routes.draw do
 
 	namespace 'admin' do
 		root :to => "dashboard#index"
-		resources :users, :product_images 
-		resources :product_categories 
+		resources :users, :product_images, :product_categories, :news
 
 		resources :products do
 			resources :product_images do
@@ -19,8 +18,10 @@ PierceEngineering::Application.routes.draw do
 		end
 
 		resource :session
+
 		match '/login' => "sessions#create", :as => "login"
 		match '/logout' => "sessions#destroy", :as => "logout"
+
 	end
 
 	# The priority is based upon order of creation:

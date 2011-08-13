@@ -222,15 +222,15 @@ html>body, html>body #wrapper
 	background-position: -231px -88px;
 }
 
-#nav .product-images
+#nav .news
 {
-	width: 104px;
-	background-position: -340px 0;
+	width: 40px;
+	background-position: -372px 0;
 }
 
-#nav .product-images:hover
+#nav .news:hover
 {
-	background-position: -340px -88px;
+	background-position: -372px -88px;
 }
 
 #nav .rifles
@@ -266,13 +266,13 @@ html>body, html>body #wrapper
 	background-position: -683px -88px;
 }
 
-#nav .activity
+#nav .history
 {
 	width: 50px;
 	background-position: -775px 0;
 }
 
-#nav .activity:hover
+#nav .history:hover
 {
 	background-position: -775px -88px;
 }
