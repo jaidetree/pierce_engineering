@@ -1,4 +1,4 @@
-<h1>Listing Product Categories</h1>
+<h1>Listing Rifle Categories</h1>
 
 <table>
   <tr>
@@ -15,9 +15,9 @@
     <td><%= admin_product_category.name %></td>
     <td><%= admin_product_category.slug %></td>
     <td><%= admin_product_category.content %></td>
-    <td><%= link_to 'Show', admin_product_category %></td>
-    <td><%= link_to 'Edit', [:admin, admin_product_category] %></td>
-    <td><%= link_to 'Destroy', [:admin, admin_product_category], :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Show', admin_rifle_category_path( admin_product_category ) %></td>
+    <td><%= link_to 'Edit', edit_admin_rifle_category_path( admin_product_category ) %></td>
+    <td><%= link_to 'Destroy', admin_rifle_category_path( admin_product_category ), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

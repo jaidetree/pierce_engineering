@@ -9,15 +9,14 @@ module ProductsLib
 	end
 
 	def self.request=( text )
-		@request = text
+		@request = text.gsub( /\/[\d]+/, '' )
 	end
 
 	def self.request
 		@request
 	end
 
-	def self.setup( url, request )
-		self.url = url
+	def self.setup( request )
 		self.request = request
 		return get_product_type
 	end
@@ -26,7 +25,7 @@ module ProductsLib
 		request.match( 'admin\/rifle' ).nil? ? 0 : 1
 	end
 
-	def self.type_action( action )
-		self.url + '/' + action
+	def self.template( action = '' )
+		self.request + ( action ? '/' + action : '' )
 	end
 end 
