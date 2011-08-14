@@ -22,6 +22,6 @@ class Product < ActiveRecord::Base
 	end
 
 	def base_price
-		return ( self.prices.class.name == "Hash" && self.prices[:base] ) ? self.prices[:base] : 0
+		return ( self.prices.class.name == "Hash" && self.prices['base'] ) ? self.prices['base'] : 0
 	end
 end

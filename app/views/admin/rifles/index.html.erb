@@ -3,7 +3,7 @@
 <table>
   <tr>
     <th>Name</th>
-    <th>Price(s)</th>
+    <th>Base Price</th>
 	<th>Category</th>
     <th>User</th>
     <th></th>
@@ -14,7 +14,7 @@
 <% @products.each do |product| %>
   <tr>
     <td><%= product.name %></td>
-	<td><%= render '/admin/partials/hash_table', :hash => product.prices, :prefix => '$' %></td>
+	<td>$<%= product.base_price %></td>
     <td><%= product.product_category.name %></td>
     <td><%= link_user product.user %></td>
     <td><%= link_to 'Show', product %></td>

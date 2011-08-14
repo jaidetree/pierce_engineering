@@ -11,13 +11,7 @@ class Admin::ProductsController < ApplicationController
 		@products = Product.joins( :product_category ).where( 'product_categories.cat_type' => @product_type ).all
 
 		respond_to do |format|
-
-			if rifle_page?
-				format.html { render ProductsLib.type_action 'index' }
-			else
-				format.html # index.html.erb
-			end
-
+			format.html { render ProductsLib.template params[:action] }
 			format.xml  { render :xml => @products }
 		end
 	end
@@ -28,7 +22,7 @@ class Admin::ProductsController < ApplicationController
 		@product = Product.find(params[:id])
 
 		respond_to do |format|
-			format.html # show.html.erb
+			format.html { render ProductsLib.template params[:action] }
 			format.xml  { render :xml => @product }
 		end
 	end
@@ -40,12 +34,7 @@ class Admin::ProductsController < ApplicationController
 
 		respond_to do |format|
 
-			if rifle_page?
-				format.html { render ProductsLib.type_action 'new' }
-			else
-				format.html # new.html.erb
-			end
-
+			format.html { render ProductsLib.template }
 			format.xml  { render :xml => [:admin, @product] }
 		end
 	end
@@ -53,6 +42,11 @@ class Admin::ProductsController < ApplicationController
 	# GET /products/1/edit
 	def edit
 		@product = Product.find(params[:id])
+
+		respond_to do |format|
+			format.html { render ProductsLib.template }
+			format.xml  { render :xml => @admin_product_category }
+		end
 	end
 
 	# POST /products
@@ -61,17 +55,22 @@ class Admin::ProductsController < ApplicationController
 		@user = current_user
 		@product = @user.products.new(params[:product])
 
+
 		respond_to do |format|
 			if @product.save
-				if rifle_page?
-					format.html { redirect_to( edit_admin_rifle_path( @product ), :notice => 'Rifle was successfully created.') }
-					format.xml  { render :xml => @product, :status => :created, :location => @product }
+
+				if params && params[:type] == "rifle" 
+					template = edit_admin_rifle_path( @product )
+					notice = "Rifle"
 				else
-					format.html { redirect_to( edit_admin_product_path( @product ), :notice => 'Product was successfully created.') }
-					format.xml  { render :xml => @product, :status => :created, :location => @product }
+					template = edit_admin_product_path( @product )
+					notice = "Product"
 				end
+
+				format.html { redirect_to( template, :notice => notice + ' was successfully saved.') }
+				format.xml  { render :xml => @product, :status => :created, :location => @product }
 			else
-				format.html { render :action => "new" }
+				format.html { render ProductsLib.template "new" }
 				format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }
 			end
 		end
@@ -82,18 +81,21 @@ class Admin::ProductsController < ApplicationController
 	def update
 		@product = Product.find(params[:id])
 
+        if params && params[:type] == "rifle"
+			template = admin_rifle_path( @admin_product )
+			notice = 'Rifle'
+		else
+			template = admin_product_path( @admin_product )
+			notice = 'Product'
+		end              
+
 		respond_to do |format|
 			if @product.update_attributes(params[:product])
-				if rifle_page?
-					format.html { redirect_to( edit_admin_rifle_path( @product ), :notice => 'Rifle was successfully updated.') }
-					format.xml  { head :ok }
-				else
-					format.html { redirect_to( [:admin, @product], :notice => 'Product was successfully updated.') }
-					format.xml  { head :ok }
-				end
+				format.html { redirect_to( template, :notice => notice + ' was successfully updated.') }
+				format.xml  { head :ok }
 			else
 				format.html { render :action => "edit" }
-				format.xml  { render :xml => [:admin, @product.errors], :status => :unprocessable_entity }
+				format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }
 			end
 		end
 	end
@@ -104,19 +106,22 @@ class Admin::ProductsController < ApplicationController
 		@product = Product.find(params[:id])
 		@product.destroy
 
+        if rifle_page?
+			url = admin_rifle_categories_path
+			notice = "Rifle"
+		else
+			url = admin_rifle_categories_path
+			notice = "Product"
+		end           
+
 		respond_to do |format|
-			if rifle_path? 
-				format.html { redirect_to( admin_rifles_path ) }
-				format.xml  { head :ok }
-			else
-				format.html { redirect_to( admin_products_path ) }
-				format.xml  { head :ok }
-			end
+			format.html { redirect_to( url, :notice => notice + " was successfully deleted." ) }
+			format.xml  { head :ok }
 		end
 	end
 
 	def get_product_type
-		@product_type = ProductsLib.setup(admin_rifles_path, request.fullpath)
+		@product_type = ProductsLib.setup(request.fullpath)
 	end
 
 end

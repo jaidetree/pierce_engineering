@@ -32,7 +32,7 @@ class Admin::ProductCategoriesController < ApplicationController
 		@admin_product_category = ProductCategory.new
 
 		respond_to do |format|
-			format.html { render ProductsLib.template '' }
+			format.html { render ProductsLib.template }
 			format.xml  { render :xml => @admin_product_category }
 		end
 	end
@@ -57,7 +57,7 @@ class Admin::ProductCategoriesController < ApplicationController
 			template = admin_rifle_categories_path
 			notice = "Rifle Category was successfully created."
 		else
-			template = admin_rifle_categories_path
+			template = admin_product_categories_path
 			notice = "Product Category was successfully created."
 		end
 
@@ -102,10 +102,10 @@ class Admin::ProductCategoriesController < ApplicationController
 		@admin_product_category.destroy
 
 		if rifle_page?
-			url = admin_rifle_categories_path( @admin_product_category )
+			url = admin_rifle_categories_path
 			notice = "Rifle"
 		else
-			url = admin_rifle_categories_path( @admin_product_category )
+			url = admin_rifle_categories_path
 			notice = "Product"
 		end
 
