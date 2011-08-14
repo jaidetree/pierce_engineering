@@ -20,4 +20,8 @@ class Product < ActiveRecord::Base
 			self.prices[ key ] = data_values[ index ]
 		end
 	end
+
+	def base_price
+		return ( self.prices.class.name == "Hash" && self.prices[:base] ) ? self.prices[:base] : 0
+	end
 end

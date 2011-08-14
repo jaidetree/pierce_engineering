@@ -7,9 +7,10 @@ PierceEngineering::Application.routes.draw do
 
 	namespace 'admin' do
 		root :to => "dashboard#index"
+		resources :rifle_categories, :controller => "product_categories"
+		resources :rifles, :controller => "products"
 		resources :users, :product_images, :product_categories, :news
 
-		resources :product_categories, :as => 'rifle_categories'
 
 		resources :products do
 			resources :product_images do

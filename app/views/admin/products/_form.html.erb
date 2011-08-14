@@ -31,7 +31,7 @@
 	</div>
 	<div class="field">
 		<%= f.label :product_category %>
-		<%= f.select :product_category_id, ProductCategory.find_all_by_cat_type(0).collect { |p| [ p.name, p.id ] } %>
+		<%= f.select :product_category_id, ProductCategory.find_all_by_cat_type(@product_type).collect { |p| [ p.name, p.id ] } %>
 	</div>
 	<div class="actions">
 		<%= f.submit %>

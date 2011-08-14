@@ -48,6 +48,23 @@ class ApplicationController < ActionController::Base
 			( action ) ? action == page[:action] && controller_found : controller_found
 		end
 
+		helper_method :current_path?
+
+		def current_path?( path )
+			return path == request.fullpath ? true : false
+		end
+
+		helper_method :path_matches?
+
+		def path_matches?( path )
+			return true if request.fullpath.match /#{path}/ 
+		end
+
+		def rifle_page?
+			path_matches?('admin/rifle') ? true : false
+		end
+
+
 	private 
 		def page_layout
 			is_admin? ? 'admin' : 'application'

@@ -13,15 +13,6 @@ class ProductCategory < ActiveRecord::Base
 		@slug ||= (self.safe_name) ? self.safe_name : self.name.clean
 	end
 
-	def cat_type
-		rifles? ? 1 : 0
-	end
-
-	def self.rifles? request_uri
-		request_uri.match( /^\/admin\/rifle.*$/) ? true : false
-	end
-
-
 	protected 
 		def make_slug
 			if slug.blank?

@@ -23,7 +23,7 @@
     <%= f.label :content %><br />
     <%= f.text_area :content %>
   </div>
-  <%= f.hidden_field :cat_type %>
+  <%= f.hidden_field :cat_type, :value => @product_type %>
   <div class="actions">
     <%= f.submit %>
   </div>

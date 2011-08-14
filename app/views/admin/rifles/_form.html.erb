@@ -1,4 +1,4 @@
-<%= form_for( [ :admin, @product ] ) do |f| %>
+<%= form_for( @product.id ? admin_rifle_path( @product ) : admin_rifles_path  ) do |f| %>
 	<% if @product.errors.any? %>
 		<div id="error_explanation">
 			<h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
@@ -23,15 +23,13 @@
 		<%= f.label :content %><br />
 		<%= f.text_area :content, :class => 'mceEditor' %>
 	</div>
-	<div class="field prices-table">
-		<%= f.label :prices %><br />
-	</div>
-	<div class="field product-data">
-		<%= f.label :data %><br />
+	<div class="field">
+		<%= hidden_field_tag 'product[prices][keys][]', 'base' %>
+		Prices Starting at: $<%= text_field_tag 'product[prices][values][]', @product.base_price  %>
 	</div>
 	<div class="field">
-		<%= f.label :product_category %>
-		<%= f.select :product_category_id, ProductCategory.find_all_by_cat_type(1).collect { |p| [ p.name, p.id ] } %>
+		<%= f.label 'Rifle Category', :for => 'product_product_category_id' %>
+		<%= f.select :product_category_id, ProductCategory.find_all_by_cat_type(@product_type).collect { |p| [ p.name, p.id ] } %>
 	</div>
 	<div class="actions">
 		<%= f.submit %>
@@ -40,22 +38,7 @@
 
 <% if @product.id %>
 <fieldset>
-	<legend>Product Images</legend>
+	<legend>Rifle Images</legend>
 	<%= render '/admin/product_images/form' %>
 </fieldset>
 <% end %>
-
-<script type="text/javascript">
-	$(document).ready( function(){ 
-		$('.prices-table').dataTable( { 
-			hash: <%=raw @product.prices.to_json %>,
-			field: 'product[prices]',
-			name: 'prices',
-			} );
-		$('.product-data').dataTable( {
-			hash: <%=raw @product.data.to_json %>,
-			field: 'product[data]',
-			name: 'data'
-		} );
-	} );
-</script>
