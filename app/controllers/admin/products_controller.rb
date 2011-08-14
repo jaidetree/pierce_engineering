@@ -1,6 +1,7 @@
 class Admin::ProductsController < ApplicationController
 
 	include ProductsLib
+	include PhotoSystem
 
 	before_filter :get_product_type
 
@@ -55,10 +56,19 @@ class Admin::ProductsController < ApplicationController
 		@user = current_user
 		@product = @user.products.new(params[:product])
 
+        if !params[:image].nil?
+			image = ProductImage.new( :image_caption => params[:image][:caption], :image_selected => true )
+			image.images = PhotoSystem.upload params[:image][:file]
+		end
 
 		respond_to do |format|
 			if @product.save
 
+				if( image )
+					image.product = @product
+					image.save
+				end
+				
 				if params && params[:type] == "rifle" 
 					template = edit_admin_rifle_path( @product )
 					notice = "Rifle"
