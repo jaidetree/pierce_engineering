@@ -19,8 +19,9 @@ module PhotoSystem
 		images[:original] = photo_url
 		images[:thumb] = generate_thumbnail photo, 'thumb', 150, true 
 		images[:big] = generate_thumbnail photo, 'big', 600
-		images[:med] = generate_thumbnail photo, 'med', 400
+		images[:med] = generate_thumbnail photo, 'med', 280
 		images[:small] = generate_thumbnail photo, 'small', 50, true
+
 
 		return images
 	end
@@ -35,7 +36,7 @@ module PhotoSystem
 		h = h.to_f
 		if ! crop
 
-			h = (h*(width/w)).to_i
+			h = ( (h*width) / w ).to_i
 			w = width
 
 			image.resize "#{w}x#{h}"
@@ -76,4 +77,5 @@ module PhotoSystem
 			end
 		end
 	end
+
 end

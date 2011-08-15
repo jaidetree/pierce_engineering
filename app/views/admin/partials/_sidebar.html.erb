@@ -16,20 +16,20 @@
 
 	<% elsif path_matches? 'admin/rifle' and not path_matches? 'admin/products' %>
 		<li><%= nav_link 'List Rifles', admin_rifles_path, 'products', 'index' %></li>
-		<li><%= nav_link 'Add Rifle', new_admin_rifle_path, 'products', 'new' %></li>
-		<% if current_controller? 'admin/products', 'edit' %>
+		<li><%= nav_link 'Add New Rifle', new_admin_rifle_path, 'products', 'new' %></li>
+		<% if @product && path_matches?( edit_admin_rifle_path( @product ) ) %>
 			<li><%= link_to 'View Rifle', @product %></li>
 		<% end %>
 		<li><%= nav_link 'List Rifle Categories', admin_rifle_categories_path, 'product_categories', 'index' %></li>
-		<li><%= nav_link 'Add Rifle Category', new_admin_rifle_category_path, 'product_categories', 'new' %></li>
+		<li><%= nav_link 'Add New Rifle Category', new_admin_rifle_category_path, 'product_categories', 'new' %></li>
 		<% if @product && @product.id %>
 			<li><%= nav_link 'Edit Rifle Images', new_admin_product_product_image_path( @product ), 'product_images', 'new' %></li>
 		<% end %>
 
 	<% elsif current_controller? 'admin/news' %>
 		<li><%= nav_link 'List News', admin_news_index_path, 'news', 'index' %></li>
-		<li><%= nav_link 'Add News', new_admin_news_path, 'news', 'new' %></li>
-		<% if current_controller? 'admin/products', 'edit' %>
+		<li><%= nav_link 'Add News Story', new_admin_news_path, 'news', 'new' %></li>
+		<% if current_controller? 'admin/news', 'edit' %>
 			<li><%= link_to 'Show News Story', @story %></li> 
 		<% end %>
 		<li><%= link_to 'View News', news_index_path %></li>

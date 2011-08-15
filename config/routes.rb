@@ -1,7 +1,8 @@
 PierceEngineering::Application.routes.draw do
 
-	resources :product_categories
-	resources :news, :products
+	resources :product_categories, :news, :products, :pages
+	resources :rifle_categories, :controller => "product_categories"
+	resources :rifles, :controller => "products"
 
 	root :to => 'pages#index'
 

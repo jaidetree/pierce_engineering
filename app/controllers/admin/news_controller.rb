@@ -2,7 +2,7 @@ class Admin::NewsController < ApplicationController
   # GET /news
   # GET /news.xml
   def index
-    @news = News.all
+    @news = News.order("created_at DESC").all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,6 +24,8 @@ class Admin::NewsController < ApplicationController
   # GET /news/new
   # GET /news/new.xml
   def new
+	@products = Product.all_products_by_cat_type(0)
+	@rifles = Product.all_products_by_cat_type(1)
     @story = News.new
 
     respond_to do |format|
@@ -34,18 +36,25 @@ class Admin::NewsController < ApplicationController
 
   # GET /news/1/edit
   def edit
+	@products = Product.all_products_by_cat_type(0)
+	@rifles = Product.all_products_by_cat_type(1)
     @story = News.find(params[:id])
   end
 
   # POST /news
   # POST /news.xml
   def create
-	@user = User.first()
+	@user = current_user
+
+	if params[:news][:products].nil? 
+		params[:news][:products] = []
+	end
+
     @news = @user.news.new(params[:news])
 
     respond_to do |format|
       if @news.save
-        format.html { redirect_to(@news, :notice => 'News was successfully created.') }
+        format.html { redirect_to( [:admin, @news], :notice => 'News was successfully created.') }
         format.xml  { render :xml => @news, :status => :created, :location => @news }
       else
         format.html { render :action => "new" }
@@ -59,9 +68,13 @@ class Admin::NewsController < ApplicationController
   def update
     @news = News.find(params[:id])
 
+	if params[:news][:products].nil? 
+		params[:news][:products] = []
+	end
+
     respond_to do |format|
       if @news.update_attributes(params[:news])
-        format.html { redirect_to(@news, :notice => 'News was successfully updated.') }
+        format.html { redirect_to( [:admin, @news], :notice => 'News was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -77,7 +90,7 @@ class Admin::NewsController < ApplicationController
     @news.destroy
 
     respond_to do |format|
-      format.html { redirect_to(news_index_url) }
+      format.html { redirect_to(admin_news_index_url) }
       format.xml  { head :ok }
     end
   end

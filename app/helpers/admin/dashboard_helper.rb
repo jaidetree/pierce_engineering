@@ -1,20 +1,26 @@
 module Admin::DashboardHelper
-	def nav_link( title, url, module_name='', action=false, options={} )
+	def nav_link( title, url, module_name='', action=false, options={}, strict=false )
 
 		if ! options[:class] || options[:class].blank?
 			options[:class] = ''
 		end
 		if module_name.blank?
 			module_name = title.clean
-		end
-
-		if ! action
+		end               
+		
+		if ! action && options[:class].empty?
 			options[:class] = module_name
 		end
 
-		if current_controller? 'admin/' + module_name.gsub( '-', '_' ), action
-			options[:class] += ' selected'
-		end
+		if( strict )
+			if request.fullpath.to_s.match "^/#{module_name}/?$" 
+				options[:class] += ' selected'
+			end
+		else
+			if current_controller? 'admin/' + module_name.gsub( '-', '_' ), action
+				options[:class] += ' selected'
+			end
+		end                         
 
 		link_to title, url, options
 	end

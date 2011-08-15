@@ -601,3 +601,8 @@ textarea
 {
 	content: '\272D';
 }
+.product-list .name
+{
+	width: 55%;
+}
+

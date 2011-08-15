@@ -1,2 +1,12 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
+(function($){
+	$(document).ready(function(){ 
+		$('.fancybox').fancybox({ 'overlayColor': '#000'});
+		$("a[rel=gallery]").fancybox({
+			'titlePosition' 	: 'over',
+			'overlayColor'		: '#000',
+			'titleFormat'		: function(title, currentArray, currentIndex, currentOpts) {
+				return '<span id="fancybox-title-over">Image ' + (currentIndex + 1) + ' / ' + currentArray.length + (title.length ? ' &nbsp; ' + title : '') + '</span>';
+			}
+		});
+	});
+})(jQuery)       

@@ -2,6 +2,7 @@
 	$(document).ready( function() {
 		$('.image-list .edit').live( 'click', editImage );  
 
+		$("a.fancybox").fancybox();
 		$("a[rel=gallery]").fancybox({
 			'titlePosition' 	: 'over',
 			'titleFormat'		: function(title, currentArray, currentIndex, currentOpts) {

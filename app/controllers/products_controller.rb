@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
 	# GET /products/1.xml
 	def show
 		@product = Product.find(params[:id])
-
+        @product_type = @product.product_category.cat_type == 1  ? "rifle" : "product"
 		respond_to do |format|
 			format.html # show.html.erb
 			format.xml  { render :xml => @product }

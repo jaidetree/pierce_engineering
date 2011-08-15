@@ -53,7 +53,7 @@ html>body, html>body #wrapper
 {
 	height: auto;
 }
-.clearfix:after, .grid960:after {
+.clearfix:after, .grid960:after, .product-info:after, .product-images:after {
 	visibility: hidden;
 	display: block;
 	font-size: 0;
@@ -152,12 +152,12 @@ nav a.current
 	border-left: 3px solid #9f012a;
 	background: #292929;
 	background: -moz-linear-gradient(left, rgba(41,41,41,1) 0%, rgba(41,41,41,0) 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(41,41,41,1)), color-stop(100%,rgba(41,41,41,0))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(left, rgba(41,41,41,1) 0%,rgba(41,41,41,0) 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(left, rgba(41,41,41,1) 0%,rgba(41,41,41,0) 100%); /* Opera11.10+ */
-background: -ms-linear-gradient(left, rgba(41,41,41,1) 0%,rgba(41,41,41,0) 100%); /* IE10+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#292929', endColorstr='#00292929',GradientType=1 ); /* IE6-9 */
-background: linear-gradient(left, rgba(41,41,41,1) 0%,rgba(41,41,41,0) 100%); /* W3C */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(41,41,41,1)), color-stop(100%,rgba(41,41,41,0))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left, rgba(41,41,41,1) 0%,rgba(41,41,41,0) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left, rgba(41,41,41,1) 0%,rgba(41,41,41,0) 100%); /* Opera11.10+ */
+	background: -ms-linear-gradient(left, rgba(41,41,41,1) 0%,rgba(41,41,41,0) 100%); /* IE10+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#292929', endColorstr='#00292929',GradientType=1 ); /* IE6-9 */
+	background: linear-gradient(left, rgba(41,41,41,1) 0%,rgba(41,41,41,0) 100%); /* W3C */
 	color: #fff;
 }
 nav ul ul a
@@ -246,3 +246,164 @@ nav ul ul a
 	margin: 0 10px;
 }
 
+/* =Page Home
+ * -------------------------------------- */
+.rifles-list
+{
+	margin-top: 20px;
+	list-style: none;
+}
+.rifles-list li
+{
+	text-align: center;
+	margin-top: 20px;
+	position: relative;
+}
+.rifles-list img
+{
+	border: 4px solid #fff;
+}
+.rifles-list a
+{
+	background: #2f2f2f;
+	padding: 6px 0 6px;
+	color: #999;
+	text-transform: capitalize;
+	display: block;
+}
+.rifles-list a:hover
+{
+	background: #000000;
+	color: #9F012A;
+	text-decoration: underline;
+}
+.rifles-list li:hover .fancybox
+{
+	display: block;
+}
+
+.rifles-list .fancybox,
+.rifles-list .fancybox:hover
+{
+	background: #fff;
+	color: #333;
+	position: absolute;
+	line-height: 12px;
+	width: 18px;
+	left: 8px;
+	top: 8px;
+	text-decoration: none;
+	display: none;
+
+}
+.news-list a
+{
+	color: #cd012a;
+}
+.news-list a:hover
+{
+	text-decoration: underline;
+}
+.news-list li
+{
+	padding: 20px 0;
+	border-bottom: 1px dashed #777;
+}
+.news-list .last
+{
+	padding: 0;
+	border-bottom: 0;
+	background: #181818;
+	margin-top: 20px;
+}
+.news-list .last a
+{
+	display: block;
+	padding: 15px 10px;
+}
+.news-list .last a:hover
+{
+	background: #151515;
+}
+/* =Product
+ * -------------------------------------- */
+.product-page h1
+{
+	font-size: 2em;
+	line-height: 1em;
+	font-weight: normal;
+	text-transform: capitalize;
+	color: #cd012a;
+}
+.product-page h1 a
+{
+	font-size: 0.4em;
+	font-weight: normal;
+	padding-left: 10px;
+	color: #777;
+}
+#main .product-page h2
+{
+	font-size: 1em;
+}
+.product-info
+{
+	margin-top: 40px;
+}
+.product-info .product-image
+{
+	float: left;
+	padding: 0 20px 5px 0;
+	text-align: center;
+}
+.product-info .product-image img
+{
+	border: 2px solid #fff;
+}
+.product-page .short-description
+{
+	font-size: 0.9em;
+	margin-bottom: 20px;
+	color: #666;
+}
+.product-page h3
+{
+	margin-top: 40px;
+}
+.product-page .product-images
+{
+	margin: 20px -5px;
+	background: #151515;
+	padding: 10px;
+}
+.product-page .product-images li
+{
+	float: left;
+	margin: 5px;
+}
+.product-page .product-images a
+{
+	display: block;
+}
+.product-page .product-images img
+{
+	border: 2px solid #fff;
+}
+.product-page .price
+{
+	margin-bottom: 40px;
+}
+.product-page .price span
+{
+	font-weight: bold;
+	color: #ccc;
+}
+.product-page .price a
+{
+	color: #555;
+	font-size: 0.9em;
+}
+.product-page .price a:hover
+{
+	color: #ccc;
+}

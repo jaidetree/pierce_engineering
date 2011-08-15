@@ -1,7 +1,29 @@
 <div class="newest-rifles col-4">
 	<h2>Newest Rifles</h2>
+	<ul class="rifles-list">
+		<% @products.each do |product| %>
+			<% next if ! product.selected_image %>
+			<li>
+			<%= link_to '&#10065;'.html_safe, product.selected_image.images[:original], :class => 'fancybox', :rel=>'fancybox', :title => product.selected_image.caption %>
+			<%= link_to rifle_path( product ) do %>
+				<%= image_tag product.selected_image.images[:med] %>
+				<%= product.name %>
+			<% end %>
+			</li>
+		<% end %>
+	</ul>
 </div>
 <div class="latest-news col-5">
 	<h2>Latest News</h2>
+	<ul class="news-list">
+	<% @news.each do |story| %>
+		<li>
+			<%= link_to story.created_at.strftime( "%m.%d.%Y" ),  %>
+			<%= story.excerpt %>
+		</li>
+	<% end %>            
+		<li class="last">
+			<%= link_to 'View News Archive', news_index_url %>
+		</li>
+	</ul>
 </div>
-

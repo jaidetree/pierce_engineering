@@ -1,3 +1,9 @@
 class News < ActiveRecord::Base
-  belongs_to :user
+	serialize :products
+	belongs_to :user
+
+	def products
+		products = read_attribute( :products )
+		products ? products : []
+	end
 end

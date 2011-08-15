@@ -57,7 +57,11 @@ class ApplicationController < ActionController::Base
 		helper_method :path_matches?
 
 		def path_matches?( path )
-			return true if request.fullpath.match /#{path}/ 
+			if path.class.name == "Regexp" 
+				return true if request.fullpath.match path
+			else
+				return true if request.fullpath.match /#{path}/ 
+			end
 		end
 
 		def rifle_page?

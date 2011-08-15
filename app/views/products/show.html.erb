@@ -1,35 +1,50 @@
-<p id="notice"><%= notice %></p>
+<div class="col-9 product-page <%= @product_type %>">
+	<h1><%= @product.name %><%= link_to '(Back to ' + @product_type + 's)', @product.product? ? products_path : rifles_path %></h1>
+	<h2>Category: <%= link_to @product.product_category.name, @product.product_category %></h2>
+	<div class="product-info">
+		<div class="product-image"> 
+			<% link_to @product.selected_image.images[:original], :class => 'fancybox' do %>
+			<%= image_tag @product.selected_image.images[:med] %>
+			<% end %>
+			<p><%= @product.selected_image.caption if @product.selected_image.has_caption? %></p>
+		</div>
 
-<p>
-  <b>Name:</b>
-  <%= @product.name %>
-</p>
+		<% if @product.product? %>
+		<div class="prices">
+			<ul>
+				<% @product.prices.each do |label, price| %>
+					<li><span class="label"><%= label %></span> $<%= price %></li>
+				<% end %>
+			</ul>
+		</div>
+		<% end %>
 
-<p>
-  <b>Excerpt:</b>
-  <%= @product.excerpt %>
-</p>
-
-<p>
-  <b>Content:</b>
-  <%= @product.content %>
-</p>
-
-<p>
-  <b>Price:</b>
-  <%= @product.price %>
-</p>
-
-<p>
-  <b>Data:</b>
-  <%= @product.data %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= @product.user %>
-</p>
-
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+		<p class="short-description"><%= @product.excerpt %></p>
+	</div>
+	<div class="long-description"><%= @product.content.html_safe %></div>
+	<% if @product.has_images? %>
+		<h3>Product Images</h3>
+		<ul class="product-images clearfix">
+			<% @product.product_images.each do |image| %>
+				<li><%= link_to image.images[:original], :rel => 'gallery', :title => image.caption do %><%= image_tag image.images[:thumb], :width => '80', :height => '80', :alt => image.caption %><% end %></li>
+			<% end %>
+		</ul>
+	<% end %>
+	<div class="price">
+		Base Price: Starting at <span><%= number_to_currency @product.base_price %></span><br />
+		<a href="/ordering-info">Ordering Info</a>
+	</div>
+	<div class="sharing">
+		<!-- AddThis Button BEGIN -->
+		<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+		<a class="addthis_button_preferred_1"></a>
+		<a class="addthis_button_preferred_2"></a>
+		<a class="addthis_button_preferred_3"></a>
+		<a class="addthis_button_preferred_4"></a>
+		<a class="addthis_button_compact"></a>
+		<a class="addthis_counter addthis_bubble_style"></a>
+		</div>
+		<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4e48cc6512ea656b"></script>
+		<!-- AddThis Button END -->
+	</div>
+</div>
