@@ -1,8 +1,5 @@
 (function($){
 	var methods = {
-		data : {},
-		field_name: '',
-		name : '',
 		init : function( options ) {
 
 			var settings = {};
@@ -14,56 +11,51 @@
 					$.extend( settings, options );
 				}
 
-				methods.data = options.hash;
-				methods.field_name = options.field;
-				methods.name = options.name;
+				$(this).data( 'options', settings );
 
-				var table = methods.draw_table( this );
+				var table = methods.createElement( 'table', '', { class: 'data-table data-table-' + options.name } );
+				var tbody = methods.createElement( 'tbody' );
+
+				var row_head = methods.createElement( 'tr' );
+				row_head.appendChild( methods.createElement( 'th', 'Label' ) );
+				row_head.appendChild( methods.createElement( 'th', 'Price' ) );
+				row_head.appendChild( methods.createElement( 'th', '&nbsp;' ) );
+
+				tbody.appendChild( row_head );
+
+				for( var key in options.hash ) {
+					tbody.appendChild( methods.createDataRow( key, options.hash[ key ], $(this).data('options').field ) );	
+				}
+
+				var tr_add = methods.createElement( 'tr', 
+					methods.createElement( 'td',
+						methods.createElement( 'em', 'Add New Entry' ), 
+						{ colspan: 3 }
+					),
+					{ class: 'add-row' }
+				);
+
+				tbody.appendChild( tr_add );
+
+				table.appendChild( tbody );
+
+				$(this).append( table );
 
 				methods.set_listeners(table);
 			});
 		},
 
-		draw_table: function(table_container) {
-			var table = methods.createElement( 'table', '', { class: 'data-table data-table-' + methods.name } );
-			var tbody = methods.createElement( 'tbody' );
-
-			var row_head = methods.createElement( 'tr' );
-			row_head.appendChild( methods.createElement( 'th', 'Label' ) );
-			row_head.appendChild( methods.createElement( 'th', 'Price' ) );
-			row_head.appendChild( methods.createElement( 'th', '&nbsp;' ) );
-
-			tbody.appendChild( row_head );
-
-			for( var key in methods.data ) {
-				tbody.appendChild( methods.createDataRow( key, methods.data[ key ] ) );	
-			}
-
-			var tr_add = methods.createElement( 'tr', 
-				methods.createElement( 'td',
-					methods.createElement( 'em', 'Add New Entry' ), 
-					{ colspan: 3 }
-				),
-				{ class: 'add-row' }
-			);
-
-			tbody.appendChild( tr_add );
-
-			table.appendChild( tbody );
-
-			$(table_container).append( table );
-
-			return table;
+		options: function( element )
+		{
+			return $(element).parents('div:eq(0)').data( 'options' );
 		},
 
 		capitalize: function( text ) {
 			return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
 		},
 
-		createDataRow: function( name, value )
+		createDataRow: function( name, value, field_name )
 		{
-			var field_name = methods.field_name;
-
 			var label_name = document.createTextNode( name );
 			var input_name = methods.createElement( 'input', name, { type: 'hidden', name: field_name + '[keys][]' } );
 			var td_name = methods.createElement( 'td', [ label_name, input_name ] );
@@ -272,7 +264,7 @@
 			var value = $(this).parent().siblings('td:first').next().children('input').val();
 
 		    var row = $(this).parents( 'tr' );
-			var tr = methods.createDataRow( name, value );
+			var tr = methods.createDataRow( name, value, $(this).parents('table').parent().data('options').field );
 			var table = $(row).parents( 'table' );
 
 			row.before( tr );

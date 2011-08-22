@@ -1,6 +1,4 @@
 class ProductCategory < ActiveRecord::Base
-	attr_accessor :slug
-
 	validates :name, :presence => true, :uniqueness => true
 
 	has_many :products
@@ -8,17 +6,22 @@ class ProductCategory < ActiveRecord::Base
 
 	before_save :make_slug
 
+	def to_param
+		self.slug
+	end
+
 	def slug
+		slug = read_attribute( :slug )
 		return if self.name.blank?
-		@slug ||= (self.safe_name) ? self.safe_name : self.name.clean
+		@slug ||= (slug) ? slug : self.name.clean
 	end
 
 	protected 
 		def make_slug
 			if slug.blank?
-				self.safe_name = self.name.clean
+				self.slug = self.name.clean
 			else
-				self.safe_name = slug.clean
+				self.slug = slug.clean
 			end
 		end
 end

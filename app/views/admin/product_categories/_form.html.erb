@@ -2,7 +2,6 @@
   <% if @admin_product_category.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@admin_product_category.errors.count, "error") %> prohibited this admin_product_category from being saved:</h2>
-
       <ul>
       <% @admin_product_category.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -10,6 +9,8 @@
       </ul>
     </div>
   <% end %>
+
+  <%= hidden_field_tag 'type', @product_label %>
 
   <div class="field">
     <%= f.label :name %><br />

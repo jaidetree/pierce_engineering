@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
 	protect_from_forgery
 	layout :page_layout
 	before_filter :authenticate
+	before_filter :navigation_resources
 
 	protected
 		# Returns the currently logged in user or nil if there isn't one
@@ -66,6 +67,12 @@ class ApplicationController < ActionController::Base
 
 		def rifle_page?
 			path_matches?('admin/rifle') ? true : false
+		end
+
+		def navigation_resources
+			return if is_admin?
+			@all_products = ProductCategory.find_all_by_cat_type( 0 )
+			@all_rifle_cats = ProductCategory.find_all_by_cat_type( 1 )
 		end
 
 

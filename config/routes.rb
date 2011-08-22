@@ -1,13 +1,23 @@
 PierceEngineering::Application.routes.draw do
 
-	resources :product_categories, :news, :products, :pages
-	resources :rifle_categories, :controller => "product_categories"
+	resources :news, :pages, :products
 	resources :rifles, :controller => "products"
+
+	resources :product_categories, :path => "category" do
+		resources :products, :path => "product"
+	end
+
+	resources :rifle_categories, :controller => "product_categories", :path => "category" do
+		resources :rifles, :controller => "products", :path => "rifle"
+	end
+
+	match '/products' => "products#index", :as => "products"
+	match '/rifles' => "products#index", :as => "rifles"
 
 	root :to => 'pages#index'
 
 	namespace 'admin' do
-		root :to => "dashboard#index"
+		root :to => "products#index"
 		resources :rifle_categories, :controller => "product_categories"
 		resources :rifles, :controller => "products"
 		resources :users, :product_images, :product_categories, :news

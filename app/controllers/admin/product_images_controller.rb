@@ -125,6 +125,6 @@ class Admin::ProductImagesController < ApplicationController
 
 	private
 	def load_product
-		@product = Product.find(params[:product_id])
+		@product = Product.find_by_slug(params[:product_id]) || Product.find(params[:product_id])
 	end
 end

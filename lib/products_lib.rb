@@ -1,13 +1,5 @@
 module ProductsLib
 
-	def self.url=( url_text )
-		@url = url_text
-	end
-
-	def self.url
-		@url
-	end
-
 	def self.request=( text )
 		@request = text.gsub( /\/[\d]+/, '' )
 	end
@@ -18,14 +10,16 @@ module ProductsLib
 
 	def self.setup( request )
 		self.request = request
-		return get_product_type
+		type = get_product_type
+		label = get_product_label( type )
+		return type, label
 	end
 
 	def self.get_product_type
-		request.match( 'admin\/rifle' ).nil? ? 0 : 1
+		request.match( '^/admin\/rifle' ).nil? ? 0 : 1
 	end
 
-	def self.template( action = '' )
-		self.request + ( action ? '/' + action : '' )
+	def self.get_product_label( type )
+		type == 1 ? "rifle" : "product"
 	end
 end 

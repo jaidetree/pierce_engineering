@@ -12,7 +12,7 @@ class Admin::ProductsController < ApplicationController
 		@products = Product.joins( :product_category ).where( 'product_categories.cat_type' => @product_type ).all
 
 		respond_to do |format|
-			format.html { render ProductsLib.template params[:action] }
+			format.html
 			format.xml  { render :xml => @products }
 		end
 	end
@@ -20,10 +20,10 @@ class Admin::ProductsController < ApplicationController
 	# GET /products/1
 	# GET /products/1.xml
 	def show
-		@product = Product.find(params[:id])
+		@product = Product.find_by_slug(params[:id]) || Product.find(params[:id])
 
 		respond_to do |format|
-			format.html { render ProductsLib.template params[:action] }
+			format.html
 			format.xml  { render :xml => @product }
 		end
 	end
@@ -35,17 +35,19 @@ class Admin::ProductsController < ApplicationController
 
 		respond_to do |format|
 
-			format.html { render ProductsLib.template }
+			format.html
 			format.xml  { render :xml => [:admin, @product] }
 		end
 	end
 
 	# GET /products/1/edit
 	def edit
-		@product = Product.find(params[:id])
+		@product = Product.find_by_slug(params[:id]) || Product.find(params[:id])
+		@product_label = ( @product.product_category.cat_type == 1 ) ? "rifle" : "product"
+		@product_type = @product_label == "rifle" ? 1 : 0
 
 		respond_to do |format|
-			format.html { render ProductsLib.template }
+			format.html
 			format.xml  { render :xml => @admin_product_category }
 		end
 	end
@@ -56,9 +58,21 @@ class Admin::ProductsController < ApplicationController
 		@user = current_user
 		@product = @user.products.new(params[:product])
 
-        if !params[:image].nil?
+		if !params[:image].nil?
 			image = ProductImage.new( :image_caption => params[:image][:caption], :image_selected => true )
 			image.images = PhotoSystem.upload params[:image][:file]
+		end
+
+		if params[:type] && params[:type] == "product"
+			template = admin_products_path
+			notice = "Product"
+			@product_type = 0
+			@product_label = "product"
+		else
+			template = admin_rifles_path
+			notice = "Rifle"
+			@product_type = 1
+			@product_label = "rifle"
 		end
 
 		respond_to do |format|
@@ -68,19 +82,12 @@ class Admin::ProductsController < ApplicationController
 					image.product = @product
 					image.save
 				end
-				
-				if params && params[:type] == "rifle" 
-					template = edit_admin_rifle_path( @product )
-					notice = "Rifle"
-				else
-					template = edit_admin_product_path( @product )
-					notice = "Product"
-				end
+
 
 				format.html { redirect_to( template, :notice => notice + ' was successfully saved.') }
 				format.xml  { render :xml => @product, :status => :created, :location => @product }
 			else
-				format.html { render ProductsLib.template "new" }
+				format.html { render :action => 'new' }
 				format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }
 			end
 		end
@@ -89,19 +96,21 @@ class Admin::ProductsController < ApplicationController
 	# PUT /products/1
 	# PUT /products/1.xml
 	def update
-		@product = Product.find(params[:id])
+		@product = Product.find_by_slug(params[:id]) || Product.find(params[:id])
+		@product_label = ( @product.product_category.cat_type == 1 ) ? "rifle" : "product"
+		@product_type = @product_label == "rifle" ? 1 : 0
 
-        if params && params[:type] == "rifle"
-			template = admin_rifle_path( @admin_product )
-			notice = 'Rifle'
+		if( @product_label == "rifle" )
+			url = admin_rifles_path
+			notice = "Rifle"
 		else
-			template = admin_product_path( @admin_product )
-			notice = 'Product'
-		end              
+			url = admin_products_path
+			notice = "Product"
+		end
 
 		respond_to do |format|
 			if @product.update_attributes(params[:product])
-				format.html { redirect_to( template, :notice => notice + ' was successfully updated.') }
+				format.html { redirect_to( url, :notice => notice + ' was successfully updated.') }
 				format.xml  { head :ok }
 			else
 				format.html { render :action => "edit" }
@@ -113,16 +122,17 @@ class Admin::ProductsController < ApplicationController
 	# DELETE /products/1
 	# DELETE /products/1.xml
 	def destroy
-		@product = Product.find(params[:id])
-		@product.destroy
+			@product = Product.find(params[:id])
 
-        if rifle_page?
+		if @product.product_category.cat_type == 0
 			url = admin_rifle_categories_path
 			notice = "Rifle"
-		else
+			else
 			url = admin_rifle_categories_path
 			notice = "Product"
 		end           
+
+		@product.destroy
 
 		respond_to do |format|
 			format.html { redirect_to( url, :notice => notice + " was successfully deleted." ) }
@@ -131,7 +141,7 @@ class Admin::ProductsController < ApplicationController
 	end
 
 	def get_product_type
-		@product_type = ProductsLib.setup(request.fullpath)
+		@product_type, @product_label = ProductsLib.setup(request.fullpath)
 	end
 
 end

@@ -20,7 +20,7 @@
 
 <p>
   <b>Data:</b>
-  <%= render '/admin/partials/hash_table', :hash => @product.data, :prefix => '$'  %>
+  <%= render '/admin/partials/hash_table', :hash => @product.data %>
 </p>
 
 <p>
@@ -29,5 +29,10 @@
 </p>
 
 
-<%= link_to 'Edit', edit_admin_product_path(@product) %> |
+<% if @product_type == "rifle" %>
+<%= link_to 'Edit', edit_admin_rifle_path(@product) %> |
 <%= link_to 'Back', admin_rifles_path %>
+<% else %>
+<%= link_to 'Edit', edit_admin_product_path(@product) %> |
+<%= link_to 'Back', admin_products_path %>
+<% end %>

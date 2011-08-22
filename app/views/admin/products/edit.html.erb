@@ -1,6 +1,11 @@
-<h1>Editing product</h1>
+<h1>Editing <%= @product_label %></h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', [:admin, @product] %> |
+<% if @product_label == "rifle" %>
+<%= link_to 'Show', rifle_category_rifle_path( @product.product_category, @product ) %> |
+<%= link_to 'Back', admin_rifles_path %>
+<% else %>
+<%= link_to 'Show', [@product.product_category, @product] %> |
 <%= link_to 'Back', admin_products_path %>
+<% end %>

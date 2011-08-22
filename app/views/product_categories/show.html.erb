@@ -1,23 +1,18 @@
-<p>
-  <b>Name:</b>
-  <%= @product_category.name %>
-</p>
+<div class="col-9 cat-page <%= @product_type %>">
+	<div class="breadcrumb">
+		<%= link_to @product_type, products_path %> &gt;<%= @product_category.name %></h1>
+	</div>
 
-<p>
-  <b>Slug:</b>
-  <%= @product_category.slug %>
-</p>
+	<ul class="products-category">
+	<% @product_category.products.all.each do |product| %>
+		<% next if not product.selected_image %>
+		<li>
+			<%= link_to [@product_category, product] do %>
+				<%= image_tag product.selected_image.images[:thumb] %>
+			<% end %>
+		</li>
+	<% end %>
+	</ul>
 
-<p>
-  <b>Content:</b>
-  <%= @product_category.content %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= @product_category.user.identity %>
-</p>
-
-
-<%= link_to 'Edit', edit_product_category_path(@product_category) %> |
-<%= link_to 'Back', product_categories_path %>
+	<%= link_to 'Edit', edit_product_category_path(@product_category) %><%= link_to 'Back', product_categories_path %>
+</div>

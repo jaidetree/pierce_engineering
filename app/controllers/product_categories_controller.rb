@@ -13,14 +13,15 @@ class ProductCategoriesController < ApplicationController
   # GET /product_categories/1
   # GET /product_categories/1.xml
   def show
-    @product_category = ProductCategory.find(params[:id])
+    @product_category = ProductCategory.find_by_slug(params[:id]) || ProductCategory.find(params[:id])
+	@product_label = @product_category.cat_type == 1 ? "rifle" : "product"
 
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @product_category }
     end
   end
-
+=begin
   # GET /product_categories/new
   # GET /product_categories/new.xml
   def new
@@ -81,4 +82,5 @@ class ProductCategoriesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+=end
 end

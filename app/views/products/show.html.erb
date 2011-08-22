@@ -13,7 +13,7 @@
 		<div class="prices">
 			<ul>
 				<% @product.prices.each do |label, price| %>
-					<li><span class="label"><%= label %></span> $<%= price %></li>
+					<li><%= label %> <span class="label"><%= number_to_currency( price ) %></span></li>
 				<% end %>
 			</ul>
 		</div>
@@ -22,18 +22,37 @@
 		<p class="short-description"><%= @product.excerpt %></p>
 	</div>
 	<div class="long-description"><%= @product.content.html_safe %></div>
-	<% if @product.has_images? %>
-		<h3>Product Images</h3>
-		<ul class="product-images clearfix">
-			<% @product.product_images.each do |image| %>
-				<li><%= link_to image.images[:original], :rel => 'gallery', :title => image.caption do %><%= image_tag image.images[:thumb], :width => '80', :height => '80', :alt => image.caption %><% end %></li>
-			<% end %>
-		</ul>
+	<% if  @product.product? %>
+		<div class="data">
+			<h3>Product Data</h3>
+			<table class="data-table" cellpadding="8" cellspacing="8">
+				<tbody>
+					<% @product.data_hash.each_pair do | label, value | %>
+					<tr>
+						<td class="label"><%= label %></td>
+						<td class="value"><%= value %></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
 	<% end %>
+	<% if @product.has_images? %>
+		<div class="images">
+			<h3><%= @product_type %> Images</h3>
+			<ul class="product-images clearfix">
+				<% @product.product_images.each do |image| %>
+					<li><%= link_to image.images[:original], :rel => 'gallery', :title => image.caption do %><%= image_tag image.images[:thumb], :width => '80', :height => '80', :alt => image.caption %><% end %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<% if ! @product.product? %>
 	<div class="price">
 		Base Price: Starting at <span><%= number_to_currency @product.base_price %></span><br />
 		<a href="/ordering-info">Ordering Info</a>
 	</div>
+	<% end %>
 	<div class="sharing">
 		<!-- AddThis Button BEGIN -->
 		<div class="addthis_toolbox addthis_default_style addthis_32x32_style">

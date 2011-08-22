@@ -36,8 +36,8 @@ class Admin::NewsController < ApplicationController
 
   # GET /news/1/edit
   def edit
-	@products = Product.all_products_by_cat_type(0)
-	@rifles = Product.all_products_by_cat_type(1)
+	@products = Product.find_all_by_type(0)
+	@rifles = Product.find_all_by_type(1)
     @story = News.find(params[:id])
   end
 

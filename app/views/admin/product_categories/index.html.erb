@@ -1,4 +1,4 @@
-<h1>Listing Product Categories</h1>
+<h1>Listing <%= @product_label %> Categories</h1>
 
 <table>
   <tr>
@@ -15,8 +15,13 @@
     <td><%= admin_product_category.name %></td>
     <td><%= admin_product_category.slug %></td>
     <td><%= admin_product_category.content %></td>
+	<% if @product_label == "rifle" %>
+    <td><%= link_to 'Show', admin_rifle_category %></td>
+    <td><%= link_to 'Edit', [:admin, admin_rifle_category] %></td>
+	<% else %> 
     <td><%= link_to 'Show', admin_product_category %></td>
     <td><%= link_to 'Edit', [:admin, admin_product_category] %></td>
+	<% end %>
     <td><%= link_to 'Destroy', [:admin, admin_product_category], :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>

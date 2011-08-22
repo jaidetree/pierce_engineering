@@ -1,21 +1,21 @@
 <div id="sidebar" class="col-3">
-	<nav id="navigation">
+	<div id="nav">
 		<ul>
-			<li><a href="/" class="current">Home</a></li>
+			<%= link_to 'Home', root_path, :class => is_selected?('') %>
 			<li>
-				<a href="#">Products</a>
+				<%= link_to 'Products', products_path %>
 				<ul>
-					<li><a href="#">Pierce Action</a></li>
-					<li><a href="#">Pierce Detachable Magazine Bottom Metal</a></li>
-					<li><a href="#">MI Multi-Flat Competition Action</a></li>
-					<li><a href="#">Recoil Lug</a></li>
-					<li><a href="#">Pierce Scope Rings</a></li>
-					<li><a href="#">Pierce Tactical Bolt Knob</a></li>
-					<li><a href="#">Pierce Tactical Rail</a></li>
-					<li><a href="#">Pierce Trigger Guards</a></li>
-					<li><a href="#">Percision Firing Pin Assembly</a></li>
-					<li><a href="#">Silencers</a></li>
-					<li><a href="#">Tube Gun Action</a></li>
+					<% @all_products.each do |cat| %>
+						<li>
+						<%= link_to cat.name, cat, :class => is_selected?('/category/' + cat.slug) %>
+							<% next if cat.products.nil? %>
+							<ul>
+								<% cat.products.each do |product| %>
+									<li><%= link_to product.name, [cat, product], :class => is_selected?('/category/' + cat.slug + '/product/' + product.slug) %></li>
+								<% end %>
+							</ul>
+						</li>
+					<% end %>
 				</ul>
 			</li>
 			<li>
@@ -27,5 +27,5 @@
 			<li><a href="#">Photos</a></li>
 			<li><a href="#">About Us</a></li>
 		</ul>
-	</nav>
+	</div>
 </div><!-- #sidebar .col-3 -->

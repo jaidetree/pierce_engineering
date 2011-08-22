@@ -11,10 +11,10 @@
 </div><!-- #header -->
 <div id="nav" class="col-12">
 	<ul>
-		<li><%= nav_link 'Dashboard', admin_root_path, 'admin', false, { :class => 'dashboard' }, true %></li>
+		<!-- <li><%= nav_link 'Dashboard', admin_root_path, 'admin', false, { :class => 'dashboard' }, true %></li> -->
+		<li><%= nav_link 'Products', admin_products_path, false, false, {}, /^\/admin(\/product(s\/)?|$)/ %></li>
 		<li><%= nav_link 'News', admin_news_index_path %></li>
-		<li><%= nav_link 'Products', admin_products_path %></li>
-		<li><%= nav_link 'Rifles', admin_rifles_path %></li>
+		<li><%= nav_link 'Rifles', admin_rifles_path, false, false, {}, /^\/admin\/rifle\/?/ %></li>
 		<li><%= nav_link 'Users', admin_users_path %></li>
 		<li><a href="/admin/settings" class="settings">Settings</a></li>
 		<li><a href="/admin/support" class="support">Support</a></li>

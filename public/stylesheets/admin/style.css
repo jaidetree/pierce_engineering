@@ -53,6 +53,7 @@ h1
 #content h2, #content h1
 {
 	margin-bottom: 10px;
+	text-transform: capitalize;
 }
 
 /* =Behavorial Enhancements

@@ -1,5 +1,9 @@
-<h1>New Product</h1>
+<h1>New <%= @product_label %></h1>
 
 <%= render 'form' %>
 
+<% if @product_label == "rifle" %>
+<%= link_to 'Back', admin_rifle_path %>
+<% else %>
 <%= link_to 'Back', admin_products_path %>
+<% end %>

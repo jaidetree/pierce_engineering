@@ -5,7 +5,7 @@
 			<% next if ! product.selected_image %>
 			<li>
 			<%= link_to '&#10065;'.html_safe, product.selected_image.images[:original], :class => 'fancybox', :rel=>'fancybox', :title => product.selected_image.caption %>
-			<%= link_to rifle_path( product ) do %>
+			<%= link_to rifle_category_rifle_path( product.product_category, product  )  do %>
 				<%= image_tag product.selected_image.images[:med] %>
 				<%= product.name %>
 			<% end %>

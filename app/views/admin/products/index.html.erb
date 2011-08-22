@@ -1,4 +1,4 @@
-<h1>Listing products</h1>
+<h1>Listing <%= @product_label %>s</h1>
 
 <table>
   <tr>
@@ -17,8 +17,13 @@
 	<td><%= render '/admin/partials/hash_table', :hash => product.prices, :prefix => '$' %></td>
     <td><%= product.product_category.name %></td>
     <td><%= link_user product.user %></td>
-    <td><%= link_to 'Show', [:admin, product] %></td>
+	<% if @product_label == "rifle" %>
+    <td><%= link_to 'Show', rifle_category_rifle_path(product.product_category, product) %></td>
+    <td><%= link_to 'Edit', edit_admin_rifle_path(product) %></td>
+	<% else %>
+    <td><%= link_to 'Show', product %></td>
     <td><%= link_to 'Edit', edit_admin_product_path(product) %></td>
+	<% end %>
     <td><%= link_to 'Destroy', [:admin, product], :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>

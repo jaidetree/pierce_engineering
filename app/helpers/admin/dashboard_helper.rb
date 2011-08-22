@@ -13,7 +13,8 @@ module Admin::DashboardHelper
 		end
 
 		if( strict )
-			if request.fullpath.to_s.match "^/#{module_name}/?$" 
+			pattern = strict.class.name == "Regexp" ? strict : "^/#{module_name}/?$"
+			if request.fullpath.to_s.match pattern 
 				options[:class] += ' selected'
 			end
 		else

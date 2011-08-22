@@ -2,7 +2,7 @@
 	<% if current_controller? 'admin/dashboard' %>
 		<li></li>
 
-	<% elsif path_matches?( 'admin/product' ) && ! path_matches?( 'admin/rifle' ) %>
+	<% elsif path_matches?( 'admin/product' ) && ! path_matches?( 'admin/rifle' ) || path_matches?( /^\/admin\/?$/ ) %>
 		<li><%= nav_link 'List Products', admin_products_path, 'products', 'index' %></li>
 		<li><%= nav_link 'Add Product', new_admin_product_path, 'products', 'new' %></li>
 		<% if current_controller? 'admin/products', 'edit' %>
