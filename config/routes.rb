@@ -31,8 +31,6 @@ PierceEngineering::Application.routes.draw do
 			end
 		end
 
-		resources :rifle_categories
-
 		resources :rifles do
 			resources :product_images do
 				member do

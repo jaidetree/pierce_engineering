@@ -17,7 +17,7 @@
 	<% elsif path_matches? 'admin/rifle' and not path_matches? 'admin/products' %>
 		<li><%= nav_link 'List Rifles', admin_rifles_path, 'products', 'index' %></li>
 		<li><%= nav_link 'Add New Rifle', new_admin_rifle_path, 'products', 'new' %></li>
-		<% if @product && path_matches?( edit_admin_rifle_path( @product ) ) %>
+		<% if @product && current_controller?('admin/products', 'edit') %>
 			<li><%= link_to 'View Rifle', @product %></li>
 		<% end %>
 		<li><%= nav_link 'List Rifle Categories', admin_rifle_categories_path, 'product_categories', 'index' %></li>

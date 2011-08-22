@@ -1,0 +1,15 @@
+<ul class="products-category">
+<% category.products.all.each do |product| %>
+	<% next if not product.selected_image %>
+	<li>
+		<%= link_to [category, product] do %>
+			<% if @product_type == "rifle" %>
+			<%= image_tag product.selected_image.images[:big] %>
+			<% else %>
+			<%= image_tag product.selected_image.images[:thumb] %>
+			<% end %>
+		<% end %>
+		<%= link_to product.name, [category, product ] %>
+	</li>
+<% end %>
+</ul>                 

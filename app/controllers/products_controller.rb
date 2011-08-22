@@ -2,7 +2,8 @@ class ProductsController < ApplicationController
 	# GET /products
 	# GET /products.xml
 	def index
-		@products = Product.all
+		@categories = path_matches?(/products/) ? ProductCategory.find_all_by_cat_type( 0 ) : ProductCategory.find_all_by_cat_type( 1 )
+		@product_type = path_matches?(/products/) ? 'product' : 'rifle'
 
 		respond_to do |format|
 			format.html # index.html.erb

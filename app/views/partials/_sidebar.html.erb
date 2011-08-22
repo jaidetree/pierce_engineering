@@ -1,31 +1,40 @@
 <div id="sidebar" class="col-3">
 	<div id="nav">
-		<ul>
+		<ul class="menu">
+			<li>
 			<%= link_to 'Home', root_path, :class => is_selected?('') %>
-			<li>
-				<%= link_to 'Products', products_path %>
-				<ul>
-					<% @all_products.each do |cat| %>
-						<li>
-						<%= link_to cat.name, cat, :class => is_selected?('/category/' + cat.slug) %>
-							<% next if cat.products.nil? %>
-							<ul>
-								<% cat.products.each do |product| %>
-									<li><%= link_to product.name, [cat, product], :class => is_selected?('/category/' + cat.slug + '/product/' + product.slug) %></li>
-								<% end %>
-							</ul>
-						</li>
-					<% end %>
-				</ul>
+			<span>&nbsp;</span>
 			</li>
 			<li>
-				<a href="#">Rifles</a>
-				<ul>
-					<li><a href="#">Tube Guns</a></li>
-				</ul>
+			<%= link_to 'Products', products_path, :class => is_selected?('/products') %>
+			<ul class="sub">
+				<% @all_products.each do |cat| %>
+					<li>
+					<%= link_to cat.name, cat, :class => is_selected?('/category/' + cat.slug) %>
+					<% next if cat.products.nil? %>
+					<ul>
+						<% cat.products.each do |product| %>
+							<li><%= link_to product.name, [cat, product], :class => is_selected?('/category/' + cat.slug + '/product/' + product.slug) %></li>
+						<% end %>
+					</ul>
+					</li>
+				<% end %>
+			</ul>
+				<span>&nbsp;</span>
 			</li>
-			<li><a href="#">Photos</a></li>
-			<li><a href="#">About Us</a></li>
+			<li>
+			<%= link_to 'Rifles', rifles_path, :class => is_selected?('/rifles') %>
+			<ul class="sub">
+				<% @all_rifles.each do |cat| %>
+					<li>
+					<%= link_to cat.name, cat, :class => is_selected?('/category/' + cat.slug) %>
+					</li>
+				<% end %>
+			</ul>
+				<span>&nbsp;</span>
+			</li>
+			<li><a href="/photos">Photos</a></li>
+			<li><a href="/about">About Us</a></li>
 		</ul>
 	</div>
 </div><!-- #sidebar .col-3 -->

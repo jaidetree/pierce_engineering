@@ -39,10 +39,13 @@ class Product < ActiveRecord::Base
 	end
 
 	def base_price
-		if not self.prices[:keys].nil? 
+		prices = self.prices_hash
+
+		if prices.has_key?( :prices )
 			return self.prices[:values][0]
 		end
-		return ( self.prices.class.name == "Hash" && self.prices['base'] ) ? self.prices['base'] : 0
+
+		return ( prices.class.name == "Hash" && prices['base'] ) ? prices['base'] : 0
 	end
 
 	def self.find_all_by_type(type)

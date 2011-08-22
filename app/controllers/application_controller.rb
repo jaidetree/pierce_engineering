@@ -72,7 +72,7 @@ class ApplicationController < ActionController::Base
 		def navigation_resources
 			return if is_admin?
 			@all_products = ProductCategory.find_all_by_cat_type( 0 )
-			@all_rifle_cats = ProductCategory.find_all_by_cat_type( 1 )
+			@all_rifles = ProductCategory.find_all_by_cat_type( 1 )
 		end
 
 
