@@ -1,0 +1,41 @@
+<%= form_for([:admin, @page]) do |f| %>
+  <% if @page.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@page.errors.count, "error") %> prohibited this admin_page from being saved:</h2>
+
+      <ul>
+      <% @page.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :slug %><br />
+    <%= f.text_field :slug %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br />
+	<%= f.text_area :content, :class => "mceEditor" %>
+  </div>
+  <div class="field data">
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<script type="text/javascript">
+	$(document).ready( function() {
+		$('.data').dataTable( {
+			hash: <%=raw @page.data_hash.to_json %>,
+			field: 'page[data]',
+			name: 'data',
+			labels: { name: 'Key', value : 'Value' }
+		} );
+	} );
+</script>

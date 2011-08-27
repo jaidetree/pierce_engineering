@@ -1,4 +1,6 @@
 class Product < ActiveRecord::Base
+	include DataTable
+
 	serialize :prices
 	serialize :data
 	validates :name, :presence => true, :uniqueness => true
@@ -15,27 +17,10 @@ class Product < ActiveRecord::Base
 
 	def process_data
 
-		self.prices = assemble_hash_from_array( self.prices )
-		self.data = assemble_hash_from_array( self.data )
+		self.prices = DataTable.assemble_hash_from_array( self.prices )
+		self.data = DataTable.assemble_hash_from_array( self.data )
 
 		self.slug = self.name.clean
-	end
-
-	def assemble_hash_from_array( data )
-		return {} if data.nil?
-		data_keys = data[:keys]
-		data_values = data[:values]
-
-		hash = {}
-
-		if data_keys.class.name == "Array" 
-			data_keys.each_with_index do |key, index|
-				hash[ key ] = data_values[ index ]
-			end
-		end
-
-		return hash
-
 	end
 
 	def base_price
@@ -58,15 +43,11 @@ class Product < ActiveRecord::Base
 	end
 
 	def prices_hash
-		return {} if prices.class.name == "String" || prices.nil? 
-		return assemble_hash_from_array( prices ) if not prices[:keys].nil?
-		prices.class.name.match( /^Hash/) || ( prices[:keys] && prices[:values] ) ? prices : {} 
+		return DataTable.get_hash( prices )
 	end
 
 	def data_hash
-		return {} if data.class.name == "String" || data.nil? 
-		return assemble_hash_from_array( data ) if not data[:keys].nil?
-		data.class.name.match( /^Hash/) ? data : {} 
+		return DataTable.get_hash( data )
 	end
 		
 	def product?

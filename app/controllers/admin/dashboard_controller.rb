@@ -12,4 +12,10 @@ class Admin::DashboardController < ApplicationController
 			#format.xml  { render :xml => @products }
 		end
 	end
+
+	def navigation
+		respond_to do |format|
+			format.html # index.html.erb
+		end
+	end
 end

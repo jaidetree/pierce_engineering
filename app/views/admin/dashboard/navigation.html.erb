@@ -1,0 +1,114 @@
+<p class="directions">
+	<strong>Directions:</strong> Just drag the navigation elements into the position and order you want. If you want to add some negative space between groups of links, just drag a spacer from the right. Once elements are positioned hit the save button.
+</p>
+<div class="nav-builder clearfix">
+	<ul class="nav-items">
+		<li class="nav-item"><div data-url="<%= root_path %>">Home</div></li>
+		<li class="nav-item">
+			<div data-url="<%= products_path %>">Products</div>
+			<ul class="cats">
+				<% ProductCategory.find_all_by_cat_type(0).each do |cat| %>
+					<li class="nav-item">
+						<div data-url="<%= product_category_path( cat ) %>"><%= cat.name %></div>
+						<% next if ! cat.products %>
+						<ul class="products">
+							<% cat.products.each do |product| %>
+							<li class="nav-item"><div data-url="<%= product_category_product_path( product.product_category, product) %>"><%= product.name %></div></li>
+							<% end %>
+						</ul>                                                                                          
+					</li>
+				<% end %>                                                                
+			</ul>
+		</li>
+		<li class="nav-item">
+			<div data-url="<%= rifles_path %>">Rifles</div>
+			<ul class="cats">
+				<% ProductCategory.find_all_by_cat_type(1).each do |cat| %>
+					<li class="nav-item">
+						<div data-url="<%= rifle_category_path( cat ) %>"><%= cat.name %></div>
+						<% next if ! cat.products %>
+						<ul class="products">
+							<% cat.products.each do |product| %>
+							<li class="nav-item"><div data-url="<%= rifle_category_rifle_path( product.product_category, product) %>"><%= product.name %></div></li>
+							<% end %>
+						</ul>                                                                                          
+					</li>
+				<% end %>                                                                
+			</ul>
+		</li>
+		<% Page.all.each do |page| %>
+		<li class="nav-item">
+			<div data-url="<%= page_path( page.slug ) %>"><%= page.name %></div>
+		</li>
+		<% end %>
+	</ul>
+	<br>
+	<div class="nav-elements clearfix">
+		Optional Elements:
+		<ul class="nav-tools">
+			<li class="spacer">(Empty Space) <span>X</span></li>
+		</ul>
+		<div class="nav-actions clearfix">
+			<a href="#" class="save">Save Navigation Menu</a>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){ 
+	$('.nav-items').sortable({ revert: true });
+	$('.nav-items .cats').sortable({ revert: true });
+	$('.nav-items .products').sortable({ revert: true });
+	$('.nav-tools li').draggable({
+		connectToSortable: ".nav-items",
+		helper: 'clone',
+		revert: 'invalid'
+	});
+	$('.nav-items .spacer span').live( 'click', function(){ $(this).parent().remove(); } );
+	$('.nav-actions .save').click( function(){ 
+		var elements = parseNavElements();
+		var data_obj = { name: 'navigation', setting: { value: elements } };
+		$.ajax( { 
+			url: '<%= admin_setting_url( Setting.find_by_key('navigation') ) %>.js',
+			type: 'put',
+			data: data_obj, 
+			success: function(data){ alert( 'data' ); } 
+		} );
+	});
+});
+
+function parseNavElements()
+{
+	var elements = [];
+	$('.nav-items > li').each( function(index){ 
+		elements[ elements.length ] = { label:  $(this).children( 'div' ).text(), url: $(this).children( 'div' ).attr( 'data-url') };
+
+		subElements = parseSubElements( this );
+
+		if( subElements.length )
+		{
+			elements[ elements.length ] = subElements
+		}
+
+	} );
+
+	return elements;
+
+}
+function parseSubElements(container)
+{
+	var elements = [];
+
+	$(container).children( 'ul' ).children( 'li' ).each( function(index){ 
+		elements[ elements.length ] = { label:  $(this).children( 'div' ).text(), url: $(this).children( 'div' ).attr( 'data-url') };
+		subElements = parseSubElements( this );
+
+		if( subElements.length )
+		{
+			elements[ elements.length ] = subElements;
+		}
+
+	} );
+
+	return elements;
+}
+</script>

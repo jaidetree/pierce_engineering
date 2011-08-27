@@ -1,5 +1,9 @@
 PierceEngineering::Application.routes.draw do
 
+  namespace :admin do resources :settings end
+
+  namespace :admin do resources :pages end
+
 	resources :news, :pages, :products
 	resources :rifles, :controller => "products"
 
@@ -17,10 +21,16 @@ PierceEngineering::Application.routes.draw do
 	root :to => 'pages#index'
 
 	namespace 'admin' do
+
 		root :to => "products#index"
+
 		resources :rifle_categories, :controller => "product_categories"
 		resources :rifles, :controller => "products"
-		resources :users, :product_images, :product_categories, :news
+		resources :users, :product_images, :product_categories, :news, :pages
+
+		resources :settings do
+			post 'save', :on => :collection	
+		end
 
 
 		resources :products do
@@ -43,8 +53,11 @@ PierceEngineering::Application.routes.draw do
 
 		match '/login' => "sessions#create", :as => "login"
 		match '/logout' => "sessions#destroy", :as => "logout"
+		match '/navigation' => "dashboard#navigation", :as => "navigation"
 
 	end
+
+	match ':slug' => 'pages#show', :as => 'page'
 
 	# The priority is based upon order of creation:
 	# first created -> highest priority.

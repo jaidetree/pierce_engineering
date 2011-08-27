@@ -1,19 +1,35 @@
-<p id="notice"><%= notice %></p>
+<div class="col-9 news-story">
+	<h1><%= @news.title %> </h1>
+	<span class="back">(<%= link_to 'back', root_path %>)</span>
 
-<p>
-  <b>Title:</b>
-  <%= @news.title %>
-</p>
+	<p class="content">
+	  <%= @news.content %>
+	</p>
 
-<p>
-  <b>Excerpt:</b>
-  <%= @news.excerpt %>
-</p>
+	<% if @news.has_products? %>
+	<div class="related">
+		<h2>Featured Products:</h2>
+		<ul class="related-products">
+			<% @news.find_all_products.each do |product| %>
+			<% next if ! product.selected_image %>
+			<li>
+				<%= link_to product.selected_image.images[:original], :class => "fancybox" do %>
+					<%= image_tag product.selected_image.images[:med] %>
+				<% end %>
 
-<p>
-  <b>Content:</b>
-  <%= @news.content %>
-</p>
+				<% if product.product_category.cat_type == 0 %>
+					<h3><%= link_to product.name, product %></h3>
+				<% else %>
+					<h3><%= link_to product.name, rifle_path( product ) %></h3>
+				<% end %>
+				<p>
+					<%= product.excerpt.html_safe %>
+				</p>
+			</li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
 
-<%= link_to 'Edit', edit_news_path(@news) %> |
-<%= link_to 'Back', news_index_path %>
+</div>
+

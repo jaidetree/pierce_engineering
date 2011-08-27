@@ -71,11 +71,13 @@
 			hash: <%=raw @product.prices_hash.to_json %>,
 			field: 'product[prices]',
 			name: 'prices',
+			labels: { name: 'Variation', value : 'Price' }
 			} );
 		$('.product-data').dataTable( {
 			hash: <%=raw @product.data_hash.to_json %>,
 			field: 'product[data]',
-			name: 'data'
+			name: 'data',
+			labels: { name: 'Attribute', value : 'Value' }
 		} );
 	} );
 </script>

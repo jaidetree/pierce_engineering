@@ -33,6 +33,12 @@
 			<li><%= link_to 'Show News Story', @story %></li> 
 		<% end %>
 		<li><%= link_to 'View News', news_index_path %></li>
+	<% elsif current_controller? 'admin/pages' %>
+		<li><%= nav_link 'List Pages', admin_pages_path, 'pages', 'index' %></li>
+		<li><%= nav_link 'New Page', new_admin_page_path, 'pages', 'new' %></li>
+		<% if @page && current_controller?('admin/pages', 'edit') %>
+			<li><%= link_to 'View Page', page_path( @page ) %></li> 
+		<% end %>
 	<% end %>
 <% end %>
 <div id="sidebar" class="col-3">

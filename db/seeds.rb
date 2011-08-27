@@ -11,3 +11,6 @@ user = User.create  :first_name => 'Jay',
 					:email => 'jay@aetkinz.com',
 					:password => 'admin',
 					:password_confirmation => 'admin'
+
+navigation = Setting.create :key => 'navigation', 
+							:value => []

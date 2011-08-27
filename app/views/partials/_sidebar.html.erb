@@ -26,15 +26,14 @@
 			<%= link_to 'Rifles', rifles_path, :class => is_selected?('/rifles') %>
 			<ul class="sub">
 				<% @all_rifles.each do |cat| %>
-					<li>
-					<%= link_to cat.name, cat, :class => is_selected?('/category/' + cat.slug) %>
-					</li>
+					<li><%= link_to cat.name, cat, :class => is_selected?('/category/' + cat.slug) %></li>
 				<% end %>
 			</ul>
 				<span>&nbsp;</span>
 			</li>
-			<li><a href="/photos">Photos</a></li>
-			<li><a href="/about">About Us</a></li>
+			<% Page.all.each do |page| %>
+			<li><%= link_to page.name, page_path( page.slug ) %></li>
+			<% end %>
 		</ul>
 	</div>
 </div><!-- #sidebar .col-3 -->

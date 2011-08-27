@@ -21,7 +21,7 @@
     <td><%= link_to 'Show', rifle_category_rifle_path(product.product_category, product) %></td>
     <td><%= link_to 'Edit', edit_admin_rifle_path(product) %></td>
 	<% else %>
-    <td><%= link_to 'Show', product %></td>
+    <td><%= link_to 'Show', product_category_product_path( product.product_category, product) %></td>
     <td><%= link_to 'Edit', edit_admin_product_path(product) %></td>
 	<% end %>
     <td><%= link_to 'Destroy', [:admin, product], :confirm => 'Are you sure?', :method => :delete %></td>

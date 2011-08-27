@@ -18,7 +18,7 @@
 	<ul class="news-list">
 	<% @news.each do |story| %>
 		<li>
-			<%= link_to story.created_at.strftime( "%m.%d.%Y" ),  %>
+			<%= link_to story.created_at.strftime( "%m.%d.%Y" ), story %>
 			<%= story.excerpt %>
 		</li>
 	<% end %>            

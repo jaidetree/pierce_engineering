@@ -20,7 +20,7 @@ class NewsController < ApplicationController
       format.xml  { render :xml => @news }
     end
   end
-
+=begin
   # GET /news/new
   # GET /news/new.xml
   def new
@@ -81,4 +81,5 @@ class NewsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+=end
 end

@@ -265,13 +265,13 @@ html>body, html>body #wrapper
 	background-position: -578px -88px;
 }
 
-#nav .profile
+#nav .pages
 {
 	width: 44px;
 	background-position: -683px 0;
 }
 
-#nav .profile:hover
+#nav .pages:hover
 {
 	background-position: -683px -88px;
 }
@@ -296,6 +296,17 @@ html>body, html>body #wrapper
 #nav .support:hover
 {
 	background-position: -871px -88px;
+}
+
+#nav .navigation
+{
+	width: 73px;
+	background-position: -959px 0;
+}
+
+#nav .navigation:hover
+{
+	background-position: -959px -88px;
 }
 
 #nav .selected
@@ -607,3 +618,57 @@ textarea
 	width: 55%;
 }
 
+.builder
+{
+	width: 50%;
+	float: left;
+}
+.results
+{
+	width: 50%;
+	float: right;
+}
+/* =Sortable Nav
+ * -------------------------------------- */
+.nav-items
+{
+	margin-bottom: 20px;
+	float: left;
+	margin-right: 20px;
+}
+.nav-items ul
+{
+	margin-left: 20px;
+}
+.nav-items li
+{
+	margin: 2px 0;
+	padding: 6px;
+	border: 1px dashed #666;
+}
+.nav-elements
+{
+	float: left;
+}
+.nav-tools li
+{
+	padding: 4px;
+}
+.spacer
+{
+	font-style: italic;
+	color: #666;
+	font-size: 0.7em;
+}
+.spacer span
+{
+	float: right;
+}
+.directions
+{
+	margin: 25px 0;
+}
+.nav-actions
+{
+	margin-top: 40px;
+}

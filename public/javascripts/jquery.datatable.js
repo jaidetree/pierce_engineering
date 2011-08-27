@@ -2,7 +2,7 @@
 	var methods = {
 		init : function( options ) {
 
-			var settings = {};
+			var settings = { labels: { name: 'Label', value: 'Value' } };
 			
 			return this.each( function(){
 
@@ -17,8 +17,8 @@
 				var tbody = methods.createElement( 'tbody' );
 
 				var row_head = methods.createElement( 'tr' );
-				row_head.appendChild( methods.createElement( 'th', 'Label' ) );
-				row_head.appendChild( methods.createElement( 'th', 'Price' ) );
+				row_head.appendChild( methods.createElement( 'th', settings.labels.name ) );
+				row_head.appendChild( methods.createElement( 'th', settings.labels.value ) );
 				row_head.appendChild( methods.createElement( 'th', '&nbsp;' ) );
 
 				tbody.appendChild( row_head );

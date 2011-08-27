@@ -1,0 +1,17 @@
+General Settings
+<%= form_for( [:admin, @setting] ) do |f| %>
+<div class="data-table">
+</div>
+<div class="actions">
+	<%= f.submit :value => "Update Settings" %>
+</div>
+<% end %>
+
+<script type="text/javascript">
+$('.data-table').dataTable( { 
+	hash: <%=raw @setting.data_hash.to_json %>,
+	field: 'setting[value]',
+	name: 'value',
+	labels: { name: 'Name', value : 'Value' }
+} );         
+</script>

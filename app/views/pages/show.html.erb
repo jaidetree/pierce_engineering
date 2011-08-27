@@ -1,0 +1,13 @@
+<div class="col-9 page">
+	<h1><%= @page.name %></h1>
+	<div class="content">
+		<%= @page.content.html_safe %>
+	</div>
+	<% if @page.data_hash['photobucket_album_rss'] %>
+		<ul class="photo-album">
+		<% @page.rss_items('photobucket_album_rss').each do |item| %>
+			<li><a href="<%= item.guid.content %>" rel="gallery"><%= image_tag item.guid.content.gsub( /\/([\w]+\.[a-z]+)$/, '/th_\\1' ), :alt => item.title %></a></li>
+		<% end %>
+		</ul>
+	<% end %>
+</div>
