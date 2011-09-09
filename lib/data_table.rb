@@ -1,6 +1,6 @@
 module DataTable
 	def self.assemble_hash_from_array( data )
-		return {} if data.nil?
+		return {} if data.nil? || data.empty?
 		data_keys = data[:keys]
 		data_values = data[:values]
 
@@ -17,7 +17,7 @@ module DataTable
 	end
 
 	def self.get_hash( data )
-		return {} if data.class.name == "String" || data.nil? 
+		return {} if data.class.name == "String" || data.nil? || data.empty?
 		return assemble_hash_from_array( data ) if not data[:keys].nil?
 		data.class.name.match( /^Hash/) || ( data[:keys] && data[:values] ) ? data : {} 
 	end

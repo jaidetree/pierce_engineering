@@ -54,7 +54,7 @@ PierceEngineering::Application.routes.draw do
 		match '/login' => "sessions#create", :as => "login"
 		match '/logout' => "sessions#destroy", :as => "logout"
 		match '/navigation' => "dashboard#navigation", :as => "navigation"
-
+		match '/support' => "dashboard#support", :as => "support"
 	end
 
 	match ':slug' => 'pages#show', :as => 'page'

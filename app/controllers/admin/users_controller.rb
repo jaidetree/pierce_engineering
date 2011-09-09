@@ -44,7 +44,7 @@ class Admin::UsersController < ApplicationController
 		@admin_user = User.new(params[:user])
 		respond_to do |format|
 			if @admin_user.save
-				format.html { redirect_to(@admin_user, :notice => 'User was successfully created.') }
+				format.html { redirect_to( [:admin, @admin_user], :notice => 'User was successfully created.') }
 				format.xml  { render :xml => @admin_user, :status => :created, :location => @admin_user }
 			else
 				format.html { render :action => "new" }
@@ -76,7 +76,7 @@ class Admin::UsersController < ApplicationController
 		@admin_user.destroy
 
 		respond_to do |format|
-			format.html { redirect_to(users_url) }
+			format.html { redirect_to(admin_users_url) }
 			format.xml  { head :ok }
 		end
 	end

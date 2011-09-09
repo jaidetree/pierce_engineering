@@ -13,7 +13,7 @@ class ProductCategory < ActiveRecord::Base
 	def slug
 		slug = read_attribute( :slug )
 		return if self.name.blank?
-		@slug ||= (slug) ? slug : self.name.clean
+		(slug) ? slug : self.name.clean
 	end
 
 	protected 
@@ -21,7 +21,7 @@ class ProductCategory < ActiveRecord::Base
 			if slug.blank?
 				self.slug = self.name.clean
 			else
-				self.slug = slug.clean
+				self.slug = self.slug.clean
 			end
 		end
 end

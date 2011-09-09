@@ -2,7 +2,8 @@ class NewsController < ApplicationController
   # GET /news
   # GET /news.xml
   def index
-    @news = News.all
+	@title = "News Archive"
+    @news = News.paginate( :page => params[:page], :per_page => 20 )
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +15,7 @@ class NewsController < ApplicationController
   # GET /news/1.xml
   def show
     @news = News.find(params[:id])
+	@title = @news.title
 
     respond_to do |format|
       format.html # show.html.erb

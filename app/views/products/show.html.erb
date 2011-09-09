@@ -22,7 +22,7 @@
 		<p class="short-description"><%= @product.excerpt %></p>
 	</div>
 	<div class="long-description"><%= @product.content.html_safe %></div>
-	<% if  @product.product? %>
+	<% if @product.product? && @product.data_hash.keys.length > 0 %>
 		<div class="data">
 			<h3>Product Data</h3>
 			<table class="data-table" cellpadding="8" cellspacing="8">

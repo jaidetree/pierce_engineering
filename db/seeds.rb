@@ -13,4 +13,20 @@ user = User.create  :first_name => 'Jay',
 					:password_confirmation => 'admin'
 
 navigation = Setting.create :key => 'navigation', 
+							:value => [],
+							:hidden => 1
+
+general = Setting.create	:key => 'general', 
 							:value => []
+
+contact_info = Setting.create	:key => 'contact', 
+								:value => []
+
+products_cat = ProductCategory.create	:name => 'Products',
+										:slug => 'products',
+										:cat_type => 0
+
+rifles_cat = ProductCategory.create		:name => 'Rifles',
+										:slug => 'rifles',
+										:cat_type => 1
+

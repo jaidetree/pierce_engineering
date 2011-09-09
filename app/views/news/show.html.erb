@@ -3,7 +3,7 @@
 	<span class="back">(<%= link_to 'back', root_path %>)</span>
 
 	<p class="content">
-	  <%= @news.content %>
+	  <%= @news.content.html_safe %>
 	</p>
 
 	<% if @news.has_products? %>

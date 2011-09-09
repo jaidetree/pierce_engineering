@@ -18,4 +18,11 @@ class Admin::DashboardController < ApplicationController
 			format.html # index.html.erb
 		end
 	end
+
+	def support
+		respond_to do |format|
+			format.html # index.html.erb
+		end
+	end
+
 end

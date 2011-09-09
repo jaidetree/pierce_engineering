@@ -75,18 +75,19 @@ class Admin::ProductCategoriesController < ApplicationController
 	# PUT /admin/product_categories/1
 	# PUT /admin/product_categories/1.xml
 	def update
-		@admin_product_category = ProductCategory.find(params[:id])
-
-		if params && params[:type] == "rifle"
-			template = admin_rifle_category_path( @admin_product_category )
-			notice = 'Rifle category was successfully updated.'
-		else
-			template = admin_product_category_path( @admin_product_category )
-			notice = 'Product category was successfully updated.'
-		end
+		@admin_product_category = ProductCategory.find_by_slug(params[:id]) || ProductCategory.find(params[:id])
 
 		respond_to do |format|
 			if @admin_product_category.update_attributes(params[:product_category])
+
+				if params && params[:type] == "rifle"
+					template = admin_rifle_category_path( @admin_product_category )
+					notice = 'Rifle category was successfully updated.'
+				else
+					template = admin_product_category_path( @admin_product_category )
+					notice = 'Product category was successfully updated.'
+				end
+
 				format.html { redirect_to( template, :notice => notice) }
 				format.xml  { head :ok }
 			else
@@ -99,13 +100,13 @@ class Admin::ProductCategoriesController < ApplicationController
 	# DELETE /admin/product_categories/1
 	# DELETE /admin/product_categories/1.xml
 	def destroy
-		@admin_product_category = ProductCategory.find(params[:id])
+		@admin_product_category = ProductCategory.find_by_slug(params[:id]) || ProductCategory.find(params[:id])
 
 		if @admin_product_category.cat_type == 1
-			url = admin_rifles_path
+			url = admin_rifle_categories_path
 			notice = "Rifle"
 		else
-			url = admin_products_path
+			url = admin_product_categories_path
 			notice = "Product"
 		end
 

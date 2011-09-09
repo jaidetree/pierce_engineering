@@ -6,13 +6,13 @@
 			</div>
 			<div class="nav col-8">
 				<ul>
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Products</a></li>
-					<li><a href="#">Rifles</a></li>
-					<li><a href="#">Tube Guns</a></li>
-					<li><a href="#">Photos</a></li>
-					<li><a href="#">About Us</a></li>
-					<li><a href="#">Contact Us</a></li>
+					<li><%= link_to 'Home', root_path %></li>
+					<li><%= link_to 'Products', products_path %></li>
+					<li><%= link_to 'Rifles', rifles_path %></li>
+					<% @all_pages.each do |page| %>
+						<li><%= link_to page.name, page_path( page ) %></li>
+					<% end %>
+					<li>
 				</ul>
 			</div><!-- .col-8 -->
 		</div><!-- .top -->
@@ -21,29 +21,19 @@
 		<div class="bottom">
 			<div class="contact col-4">
 				<div class="left">
-					jpierceltd@tds.net<br>
-					tel: (517) 321-5051<br>
-					fax: (517) 321-4574
+					<%= mail_to get_setting( :contact, 'email' ) %><br />
+					tel: <%= get_setting( :contact, 'phone' ) %><br />
+					fax: <%= get_setting( :contact, 'fax' ) %>
 				</div><!-- .left -->
 				<div class="right">
-					PIERCE Engineering<br>
-					5122 North Grand River<br>
-					Lansing, MI 48906
+					<%= get_setting( :contact, 'address' ).html_safe %>
 				</div><!-- .right -->
 			</div><!-- .contact .col-4 -->
 			<div class="products col-8" -->
 				<ul>
-					<li><a href="#">Pierce Action</a></li>
-					<li><a href="#">Pierce Detachable Magazine Bottom Metal</a></li> 
-					<li><a href="#">MI Multi-Flat Competition Action</a></li> 
-					<li><a href="#">Recoil Lug</a></li> 
-					<li><a href="#">Pierce Scope Rings</a></li> 
-					<li><a href="#">Pierce Tactical Rail</a></li> 
-					<li><a href="#">Pierce Tactical Bolt Knob</a></li> 
-					<li><a href="#">Pierce Trigger Guards</a></li> 
-					<li><a href="#">Percision Firing Pin Assembly</a></li> 
-					<li><a href="#">Silencers</a></li> 
-					<li><a href="#">Tube Gun Action</a></li>
+					<% Product.find_all_by_type(0).each do |product| %>
+						<li><%= link_to product.name, [ product.product_category, product ] %></li>
+					<% end %>
 				</ul>
 			</div><!-- .products .col-8 -->
 		</div><!-- .bottom -->

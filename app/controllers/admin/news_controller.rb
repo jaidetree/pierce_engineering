@@ -24,8 +24,8 @@ class Admin::NewsController < ApplicationController
   # GET /news/new
   # GET /news/new.xml
   def new
-	@products = Product.all_products_by_cat_type(0)
-	@rifles = Product.all_products_by_cat_type(1)
+	@products = Product.find_all_by_type(0)
+	@rifles = Product.find_all_by_type(1)
     @story = News.new
 
     respond_to do |format|

@@ -17,12 +17,12 @@
     <td><%= admin_product_category.content %></td>
 	<% if @product_label == "rifle" %>
     <td><%= link_to 'Show', admin_product_category %></td>
-    <td><%= link_to 'Edit', edit_admin_rifle_category_path( admin_product_category) %></td>
+    <td><%= link_to 'Edit', edit_admin_rifle_category_path( admin_product_category ) %></td>
 	<% else %> 
-    <td><%= link_to 'Show', product_category %></td>
-    <td><%= link_to 'Edit', admin_product_category %></td>
+    <td><%= link_to 'Show', admin_product_category %></td>
+    <td><%= link_to 'Edit', edit_admin_product_category_path( admin_product_category ) %></td>
 	<% end %>
-    <td><%= link_to 'Destroy', admin_product_category, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', [:admin, admin_product_category], :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

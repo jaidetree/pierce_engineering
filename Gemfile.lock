@@ -75,6 +75,7 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.29)
+    will_paginate (3.0.0)
 
 PLATFORMS
   ruby
@@ -86,3 +87,4 @@ DEPENDENCIES
   mysql2 (< 0.3)
   rails (= 3.0.9)
   remotipart (~> 0.4)
+  will_paginate (~> 3.0)

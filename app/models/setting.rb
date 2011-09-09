@@ -4,7 +4,7 @@ class Setting < ActiveRecord::Base
 	before_save :make_hashes
 
     def make_hashes
-		self.value = DataTable.assemble_hash_from_array self.value
+		self.value = DataTable.assemble_hash_from_array(self.value)
 	end
 
 	def data_hash

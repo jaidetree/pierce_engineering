@@ -23,7 +23,7 @@ module Admin::DashboardHelper
 			end
 		end                         
 
-		link_to title, url, options
+		link_to title.capitalize, url, options
 	end
 
 	def display_hash( hash )

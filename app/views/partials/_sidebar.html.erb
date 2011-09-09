@@ -31,7 +31,7 @@
 			</ul>
 				<span>&nbsp;</span>
 			</li>
-			<% Page.all.each do |page| %>
+			<% @all_pages.each do |page| %>
 			<li><%= link_to page.name, page_path( page.slug ) %></li>
 			<% end %>
 		</ul>

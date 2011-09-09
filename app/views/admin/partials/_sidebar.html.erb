@@ -33,12 +33,24 @@
 			<li><%= link_to 'Show News Story', @story %></li> 
 		<% end %>
 		<li><%= link_to 'View News', news_index_path %></li>
+
 	<% elsif current_controller? 'admin/pages' %>
 		<li><%= nav_link 'List Pages', admin_pages_path, 'pages', 'index' %></li>
 		<li><%= nav_link 'New Page', new_admin_page_path, 'pages', 'new' %></li>
 		<% if @page && current_controller?('admin/pages', 'edit') %>
 			<li><%= link_to 'View Page', page_path( @page ) %></li> 
 		<% end %>
+
+	<% elsif current_controller? 'admin/settings' %>
+		<% Setting.find_all_by_hidden(0).each do |setting| %>
+			<li><%= link_to setting.key.capitalize, [:admin, setting], :class => is_selected?( controller.action_name == "index" && setting.key == "general" || '/admin/settings/' + setting.id.to_s )  %></li>
+		<% end %>
+		<li><%= nav_link 'New Setting Group', new_admin_setting_path, 'settings', 'new' %></li>
+
+	<% elsif current_controller? 'admin/users' %>
+		<li><%= nav_link 'List Users', admin_users_path, 'users', 'index' %></li>
+		<li><%= nav_link 'Add New User', new_admin_user_path, 'users', 'new' %></li>
+
 	<% end %>
 <% end %>
 <div id="sidebar" class="col-3">

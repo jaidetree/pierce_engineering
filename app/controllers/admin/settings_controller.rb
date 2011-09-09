@@ -6,7 +6,7 @@ class Admin::SettingsController < ApplicationController
 
     respond_to do |format|
       format.html { render 'show' }# index.html.erb
-      format.xml  { render :xml => @settings }
+      format.xml  { render :xml => @setting }
     end
   end
 

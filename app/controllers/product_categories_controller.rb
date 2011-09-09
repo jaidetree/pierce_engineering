@@ -1,86 +1,15 @@
 class ProductCategoriesController < ApplicationController
-  # GET /product_categories
-  # GET /product_categories.xml
-  def index
-    @product_categories = ProductCategory.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @product_categories }
-    end
-  end
 
   # GET /product_categories/1
   # GET /product_categories/1.xml
   def show
     @product_category = ProductCategory.find_by_slug(params[:id]) || ProductCategory.find(params[:id])
 	@product_type = @product_category.cat_type == 1 ? "rifle" : "product"
+	@title = @product_category.name
 
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @product_category }
     end
   end
-=begin
-  # GET /product_categories/new
-  # GET /product_categories/new.xml
-  def new
-    @product_category = ProductCategory.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @product_category }
-    end
-  end
-
-  # GET /product_categories/1/edit
-  def edit
-    @product_category = ProductCategory.find(params[:id])
-  end
-
-  # POST /product_categories
-  # POST /product_categories.xml
-  def create
-	@user = current_user
-    @product_category = @user.product_categories.new(params[:product_category])
-
-    respond_to do |format|
-      if @product_category.save
-        format.html { redirect_to(@product_category, :notice => 'Product category was successfully created.') }
-        format.xml  { render :xml => @product_category, :status => :created, :location => @product_category }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @product_category.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /product_categories/1
-  # PUT /product_categories/1.xml
-  def update
-    @product_category = ProductCategory.find(params[:id])
-
-    respond_to do |format|
-      if @product_category.update_attributes(params[:product_category])
-        format.html { redirect_to(@product_category, :notice => 'Product category was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @product_category.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /product_categories/1
-  # DELETE /product_categories/1.xml
-  def destroy
-    @product_category = ProductCategory.find(params[:id])
-    @product_category.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(product_categories_url) }
-      format.xml  { head :ok }
-    end
-  end
-=end
 end

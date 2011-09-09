@@ -14,14 +14,11 @@ class PagesController < ApplicationController
   # GET /slug.html
   def show
     @page = Page.find_by_slug(params[:slug])
+	@title = @page.name
 
     respond_to do |format|
       format.html # show.html.erb
     end
-  end
-
-  def photos
-	  rss = RSS::Parser.parse(open('http://www.travisonrails.com/feed/posts').read, false)
   end
 
 end

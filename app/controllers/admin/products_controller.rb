@@ -58,7 +58,7 @@ class Admin::ProductsController < ApplicationController
 		@user = current_user
 		@product = @user.products.new(params[:product])
 
-		if !params[:image].nil?
+		if params[:image][:file]
 			image = ProductImage.new( :image_caption => params[:image][:caption], :image_selected => true )
 			image.images = PhotoSystem.upload params[:image][:file]
 		end
@@ -122,14 +122,14 @@ class Admin::ProductsController < ApplicationController
 	# DELETE /products/1
 	# DELETE /products/1.xml
 	def destroy
-			@product = Product.find(params[:id])
+		@product = Product.find_by_slug(params[:id]) || Product.find(params[:id])
 
 		if @product.product_category.cat_type == 0
-			url = admin_rifle_categories_path
-			notice = "Rifle"
-			else
-			url = admin_rifle_categories_path
+			url = admin_products_path
 			notice = "Product"
+			else
+			url = admin_rifles_path
+			notice = "Rifle"
 		end           
 
 		@product.destroy
