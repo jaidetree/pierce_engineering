@@ -549,6 +549,19 @@ html>body, html>body #wrapper
 {
 	display: block;
 }
+.products-category li img
+{
+	border: 3px solid #fff;
+}
+.products-category li:hover img
+{
+	border: 3px solid #cd012a;
+}
+.products-category li:hover a
+{
+	color: #cd012a;
+}
+
 /* =Products Listing
  * -------------------------------------- */
 #main .products-index h1
