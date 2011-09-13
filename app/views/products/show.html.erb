@@ -42,6 +42,7 @@
 			<h3><%= @product_type %> Images</h3>
 			<ul class="product-images clearfix">
 				<% @product.product_images.each do |image| %>
+					<% next if image.images.empty? %>
 					<li><%= link_to image.images[:original], :rel => 'gallery', :title => image.caption do %><%= image_tag image.images[:thumb], :width => '80', :height => '80', :alt => image.caption %><% end %></li>
 				<% end %>
 			</ul>

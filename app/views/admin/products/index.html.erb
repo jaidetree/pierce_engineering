@@ -31,4 +31,8 @@
 
 <br />
 
+<% if @product_label == "rifle" %>
+<%= link_to 'New Rifle', new_admin_rifle_path %>
+<% else %>
 <%= link_to 'New Product', new_admin_product_path %>
+<% end %>

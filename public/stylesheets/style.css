@@ -533,6 +533,23 @@ html>body, html>body #wrapper
 	font-size: 1.5em;
 	margin-bottom: 40px;
 }
+.cat-page .category-content
+{
+	margin: 20px 0;
+}
+#main .cat-page .category-content h1,
+#main .cat-page .category-content h2,
+#main .cat-page .category-content h3,
+#main .cat-page .category-content h4
+{
+	color: #cd012a;
+}
+.cat-page .category-content p
+{
+	margin: 10px 0;
+	font-size: 0.9em;
+	line-height: 1.6em;
+}
 .products-category
 {
 	margin: 0 -10px 40px -10px;

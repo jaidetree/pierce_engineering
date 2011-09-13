@@ -1,5 +1,11 @@
 <ul class="image-list" id="product-images">
 	<% @product.product_images.order('created_at DESC').each do |image| %>
+		<% 
+		if image.images.empty? 
+			image.destroy
+			next
+		end 
+		%>
 		<%= render '/admin/product_images/image_li', :image => image %>
 	<% end %>
 </ul>

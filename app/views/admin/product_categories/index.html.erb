@@ -4,7 +4,6 @@
   <tr>
     <th>Name</th>
     <th>Slug</th>
-    <th>Content</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,7 +13,6 @@
   <tr>
     <td><%= admin_product_category.name %></td>
     <td><%= admin_product_category.slug %></td>
-    <td><%= admin_product_category.content %></td>
 	<% if @product_label == "rifle" %>
     <td><%= link_to 'Show', admin_product_category %></td>
     <td><%= link_to 'Edit', edit_admin_rifle_category_path( admin_product_category ) %></td>

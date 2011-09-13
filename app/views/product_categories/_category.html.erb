@@ -13,3 +13,9 @@
 	</li>
 <% end %>
 </ul>                 
+
+<% if not category.content.empty? %>
+	<div class="category-content">
+		<%= category.content.html_safe %>
+	</div>
+<% end %>
