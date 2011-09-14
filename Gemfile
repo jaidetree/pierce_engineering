@@ -11,7 +11,6 @@ gem "remotipart", "~> 0.4"
 gem "mini_magick", "~> 3.3"
 # gem "kaminari", "~> 0.12.4"
 gem 'will_paginate', '~> 3.0'
-gem "rmagick", "~> 2.13.1"
 
 
 # Use unicorn as the web server
