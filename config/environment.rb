@@ -1,3 +1,6 @@
+RAILS_ENV="development"
+RAILS_ENV.freeze
+
 # Load the rails application
 require File.expand_path('../application', __FILE__)
 
