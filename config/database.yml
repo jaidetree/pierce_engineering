@@ -28,12 +28,22 @@ test:
   password: T0rnad0
   socket: /tmp/mysql.sock
 
+#production:
+# adapter: mysql2
+# encoding: utf8
+# reconnect: false
+# database: pixelfist_pierce
+# pool: 5
+# username: pixelfist_pierce
+# password: 60e5c306
+# socket: /var/lib/mysql/mysql.sock
+
 production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: pixelfist_pierce
+  database: pierce_engineering
   pool: 5
-  username: pixelfist_pierce
-  password: 60e5c306
-  socket: /var/lib/mysql/mysql.sock
+  username: root
+  password: T0rnad0
+  socket: /tmp/mysql.sock

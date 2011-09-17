@@ -9,8 +9,9 @@ gem 'mysql2', '< 0.3'
 gem "jquery-rails", "~> 1.0.13"
 gem "remotipart", "~> 0.4"
 gem "mini_magick", "~> 3.3"
-# gem "kaminari", "~> 0.12.4"
-gem 'will_paginate', '~> 3.0'
+gem "kaminari", "~> 0.12.4"
+# gem 'will_paginate', '~> 3.0'
+
 
 
 # Use unicorn as the web server

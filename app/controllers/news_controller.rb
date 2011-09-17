@@ -3,7 +3,7 @@ class NewsController < ApplicationController
   # GET /news.xml
   def index
 	@title = "News Archive"
-    @news = News.paginate( :page => params[:page], :per_page => 20 )
+	@news = News.order('created_at DESC').page( params[:page] ).per( 20 )
 
     respond_to do |format|
       format.html # index.html.erb
